@@ -37,7 +37,7 @@ public class UserUtils {
     }
 
     public int isexst_user(String a,String b)throws SQLException {
-        String sql="select * from user2;";
+        String sql="select * from user;";
         Statement statement=con.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         int c= 0;
@@ -60,7 +60,7 @@ public class UserUtils {
 
     public  int re_user(String a,String b,String c,String d,String e,String f,String g,int aggree  )throws SQLException
     {
-        String sql="select * from user2;";
+        String sql="select * from user;";
         Statement statement=con.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         int re=3;
@@ -82,7 +82,7 @@ public class UserUtils {
         if(re==3)
         {
             Statement statement1=con.createStatement();
-            sql="insert into user2 values("+"'"+a+"'"+","+"'"+b+"'"+","+"'"+d+"'"+","+"'"+e+"'"+","+"'"+f+"'"+","+"'"+g+"'"+")";
+            sql="insert into user values("+"'"+a+"'"+","+"'"+b+"'"+","+"'"+d+"'"+","+"'"+e+"'"+","+"'"+f+"'"+","+"'"+g+"'"+")";
             //System.out.print(sql);
            // ResultSet resultSet1 = statement1.executeQuery(sql);
             PreparedStatement pre=con.prepareStatement(sql);

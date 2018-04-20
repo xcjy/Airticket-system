@@ -1,8 +1,6 @@
 package Window;
 
 import Utils.UserUtils;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class register {
+public class RegistWindow {
     Parent root;
     Button b_re;
     TextField tf1,tf2,tf3,tf4,tf5,tf6 ;
@@ -19,10 +17,10 @@ public class register {
     RadioButton rb1,rb2;
    // ToggleGroup group = new ToggleGroup();
 
-    public  register() {
+    public RegistWindow() {
         Stage registerStage=new Stage();
         try{
-            root = FXMLLoader.load(getClass().getResource("../fxml/sample.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../fxml/regist.fxml"));
         }
         catch(Exception e){e.printStackTrace();}
         Scene scene=new Scene(root,350,500);
