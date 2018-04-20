@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ManagerWindow {
+
     private FlightUtils flightUtils;
     private Parent root;
 
@@ -32,6 +33,7 @@ public class ManagerWindow {
     private Button button_addflight;
     private Button button_deleteflight;
     private Button button_searchflight;
+    private Button button_logout;
     private List<TextField> flighttextField;
     private TextField searchTextField;
 
@@ -40,7 +42,7 @@ public class ManagerWindow {
 
 
     public ManagerWindow(){
-        Stage FlightStage=new Stage();
+         Stage FlightStage=new Stage();
         try{
              root = FXMLLoader.load(getClass().getResource("../fxml/Manager.fxml"));
         } catch (Exception e){
@@ -55,22 +57,36 @@ public class ManagerWindow {
         /* 连接数据库*/
       flightUtils=new FlightUtils();
 
-        InitControl();
-        Buttonevent();
+        InitFlightControl();
+        Flight_Buttonevent();
+
     }
 
 
    //初始化控件
-    public void InitControl(){
+    public void InitFlightControl(){
+        //寻找控件
         FlightTable=(TableView)root.lookup("#FlightTable");
         FlightObList=FXCollections.observableArrayList();
+        button_addflight=(Button) root.lookup("#button_addflight");
+        button_deleteflight=(Button) root.lookup("#button_deleteflight");
+        button_searchflight=(Button) root.lookup("#button_search");
+        button_logout=(Button)root.lookup("#button_logout");
+
+        searchTextField=(TextField) root.lookup("#searchTextfield");
+        flightParams =(ComboBox<String>)root.lookup("#flightparams");
+        initFlightComboBox();
+        flightParams.setItems(FXCollections.observableArrayList(flightMap.keySet()));
+        flightParams.getSelectionModel().select(0);
+        flighttextField=new ArrayList<TextField>();
+        for(int i=0;i<9;i++)
+            flighttextField.add( (TextField)root.lookup("#flightTextfield_"+i));
+
 
           /*绑定Flight 与 observablelist*/
         String[] flightpara=new String[] {"id","com","model","stime","etime","start","dist","price","left"};
 
         ObservableList<TableColumn> flight_observableList=FlightTable.getColumns();
-
-
 
         for(int i=0;i<flight_observableList.size();i++)
         {
@@ -207,8 +223,8 @@ public class ManagerWindow {
 
             tmp.setId(list.get(i).get("f_id").toString());
             tmp.setCom(list.get(i).get("f_com").toString());
-            tmp.setEtime(list.get(i).get("f_etime").toString());
-            tmp.setStime(list.get(i).get("f_stime").toString());
+            tmp.setEtime(  CutPoint0(list.get(i).get("f_etime").toString()));  //去掉.0  时间转换为字符串
+            tmp.setStime(CutPoint0(list.get(i).get("f_stime").toString()));
             tmp.setModel(list.get(i).get("f_model").toString());
             tmp.setStart(list.get(i).get("f_start").toString());
             tmp.setDist(list.get(i).get("f_dist").toString());
@@ -217,30 +233,10 @@ public class ManagerWindow {
             FlightObList.add(tmp);
         }
        FlightTable.setItems(FlightObList);
-
-
-        /*      初始化控件  */
-        button_addflight=(Button) root.lookup("#button_addflight");
-        button_deleteflight=(Button) root.lookup("#button_deleteflight");
-        button_searchflight=(Button) root.lookup("#button_search");
-        searchTextField=(TextField) root.lookup("#searchTextfield");
-        flightParams =(ComboBox<String>)root.lookup("#flightparams");
-        initComboBox();
-
-        flightParams.setItems(FXCollections.observableArrayList(flightMap.keySet()));
-
-
-        flightParams.getSelectionModel().select(0);
-
-
-         flighttextField=new ArrayList<TextField>();
-        for(int i=0;i<flight_observableList.size();i++)
-            flighttextField.add( (TextField)root.lookup("#flightTextfield_"+i));
-
     }
 
     //初始化ComboBox
-    public void initComboBox()
+    public void initFlightComboBox()
     {
         flightMap=new HashMap<>();
         flightMap.put("航班编号","f_id");
@@ -256,7 +252,7 @@ public class ManagerWindow {
     }
 
 
-    private void Buttonevent() {
+    private void Flight_Buttonevent() {
         //查询航班事件
         button_searchflight.setOnAction(event -> {
             //  获取要检索的属性
@@ -276,9 +272,9 @@ public class ManagerWindow {
                 Flight tmp = new Flight();
                 tmp.setId(selectedlist.get(i).get("f_id").toString());
                 tmp.setCom(selectedlist.get(i).get("f_com").toString());
-                tmp.setEtime(selectedlist.get(i).get("f_etime").toString());
-                tmp.setStime(selectedlist.get(i).get("f_stime").toString());
-                tmp.setModel(selectedlist.get(i).get("f_model").toString());
+                tmp.setEtime(     CutPoint0(  selectedlist.get(i).get("f_etime").toString()) );
+                tmp.setStime(CutPoint0(selectedlist.get(i).get("f_stime").toString()));
+                tmp.setModel(   selectedlist.get(i).get("f_model").toString());
                 tmp.setStart(selectedlist.get(i).get("f_start").toString());
                 tmp.setDist(selectedlist.get(i).get("f_dist").toString());
                 tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
@@ -336,6 +332,12 @@ public class ManagerWindow {
 
 
 
+
+    }
+
+    String CutPoint0(String time)
+    {
+         return time.substring(0,time.length()-5);
     }
 
 }

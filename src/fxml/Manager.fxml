@@ -20,13 +20,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="635.0" prefWidth="1030.0">
                      <children>
-                        <TableView fx:id="FlightTable" editable="true" layoutX="16.0" layoutY="69.0" prefHeight="468.0" prefWidth="860.0">
+                        <TableView fx:id="FlightTable" editable="true" layoutX="16.0" layoutY="69.0" prefHeight="468.0" prefWidth="821.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="航班编号" />
                             <TableColumn prefWidth="75.0" text="航班公司" />
                               <TableColumn prefWidth="75.0" text="机型" />
-                              <TableColumn prefWidth="170.0" text="起飞时间" />
-                              <TableColumn prefWidth="170.0" text="到达时间" />
+                              <TableColumn prefWidth="150.0" text="起飞时间" />
+                              <TableColumn prefWidth="150.0" text="到达时间" />
                               <TableColumn minWidth="75.0" prefWidth="75.0" text="起点" />
                               <TableColumn minWidth="75.0" prefWidth="75.0" text="终点" />
                               <TableColumn prefWidth="75.0" text="价格" />
@@ -38,16 +38,16 @@
                               <TextField fx:id="flightTextfield_0" prefHeight="23.0" prefWidth="75.0" />
                               <TextField fx:id="flightTextfield_1" prefHeight="30.0" prefWidth="75.0" />
                               <TextField fx:id="flightTextfield_2" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_3" prefHeight="24.0" prefWidth="170.0" />
-                              <TextField fx:id="flightTextfield_4" prefHeight="24.0" prefWidth="170.0" />
+                              <TextField fx:id="flightTextfield_3" prefHeight="24.0" prefWidth="150.0" />
+                              <TextField fx:id="flightTextfield_4" prefHeight="24.0" prefWidth="150.0" />
                               <TextField fx:id="flightTextfield_5" prefHeight="24.0" prefWidth="75.0" />
                               <TextField fx:id="flightTextfield_6" prefHeight="24.0" prefWidth="75.0" />
                               <TextField fx:id="flightTextfield_7" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_8" prefHeight="30.0" prefWidth="62.0" />
+                              <TextField fx:id="flightTextfield_8" prefHeight="30.0" prefWidth="71.0" />
                            </children>
                         </HBox>
                         <Button fx:id="button_search" layoutX="701.0" layoutY="23.0" mnemonicParsing="false" text="搜索航班" />
-                        <Button fx:id="button_deleteflight" layoutX="568.0" layoutY="566.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="300.0" text="删除选中航班" />
+                        <Button fx:id="button_deleteflight" layoutX="537.0" layoutY="568.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="300.0" text="删除选中航班" />
                         <Label layoutX="48.0" layoutY="28.0" text="属性" />
                         <ComboBox fx:id="flightparams" layoutX="86.0" layoutY="23.0" prefHeight="30.0" prefWidth="117.0" />
                         <TextField fx:id="searchTextfield" layoutX="203.0" layoutY="23.0" prefHeight="30.0" prefWidth="498.0" />
@@ -61,6 +61,11 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
+            <Tab text="机票管理">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </center>

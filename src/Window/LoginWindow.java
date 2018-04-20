@@ -11,6 +11,7 @@ public class LoginWindow extends Application {
 
     private Button login;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));
