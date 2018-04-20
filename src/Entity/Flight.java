@@ -1,6 +1,7 @@
 package Entity;
 
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import javax.script.SimpleScriptContext;
@@ -20,6 +21,7 @@ public class Flight {
     private SimpleStringProperty dist =new SimpleStringProperty();
 
     private SimpleFloatProperty price =new SimpleFloatProperty();
+    private SimpleIntegerProperty left=new SimpleIntegerProperty();
 
 
     public String getId() {
@@ -133,6 +135,22 @@ public class Flight {
     public void setPrice(float price) {
         this.price.set(price);
     }
+
+
+    public int getLeft() {
+        return left.get();
+    }
+
+    public SimpleIntegerProperty leftProperty() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left.set(left);
+    }
+
+
+
 
 
 

@@ -18,7 +18,7 @@ public class FlightUtils extends MysqlUtils{
     /* 添加一个航班 参数为List数组*/
     public  boolean InsertFlight(List<Object> params)
     {
-        String sql="INSERT INTO `airlineticket`.`flight` VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+        String sql="INSERT INTO `airlineticket`.`flight` VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
         try {
              mysqlUtils.updateByPreparedStatement(sql, params);
              return true;

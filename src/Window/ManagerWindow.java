@@ -2,7 +2,6 @@ package Window;
 
 import Entity.Flight;
 import Utils.FlightUtils;
-import Utils.MysqlUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -15,9 +14,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.util.converter.FloatStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 
-import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,13 +42,13 @@ public class ManagerWindow {
     public ManagerWindow(){
         Stage FlightStage=new Stage();
         try{
-             root = FXMLLoader.load(getClass().getResource("../fxml/flight.fxml"));
+             root = FXMLLoader.load(getClass().getResource("../fxml/Manager.fxml"));
         } catch (Exception e){
             e.printStackTrace();
         }
 
         Scene scene=new Scene(root,1024,768);
-        FlightStage.setTitle("hello");
+        FlightStage.setTitle("Hello,管理员");
         FlightStage.setScene(scene);
         FlightStage.show();
 
@@ -67,21 +66,22 @@ public class ManagerWindow {
         FlightObList=FXCollections.observableArrayList();
 
           /*绑定Flight 与 observablelist*/
-        String[] flightpara=new String[] {"id","com","model","stime","etime","start","dist","price"};
+        String[] flightpara=new String[] {"id","com","model","stime","etime","start","dist","price","left"};
 
         ObservableList<TableColumn> flight_observableList=FlightTable.getColumns();
+
 
 
         for(int i=0;i<flight_observableList.size();i++)
         {
             //先绑定
             flight_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Flight,String>(flightpara[i])); //与Flight中的属性关联
-            if(i!=7)
+            if(i!=7&&i!=8)
             flight_observableList.get(i).setCellFactory(TextFieldTableCell.<Flight>forTableColumn());  // 设置成表格可编辑
         }
         flight_observableList.get(7).setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter())); // float 转string 出错 默认不带转换器
-        for(int i=0;i<8;i++)
-            System.out.println(flight_observableList.get(i).getColumns());
+        flight_observableList.get(8).setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));  //同上
+
 
         // 界面修改航班信息
         flight_observableList.get(0).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
@@ -184,6 +184,18 @@ public class ManagerWindow {
                 }
             }
         });
+        flight_observableList.get(8).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(event.getNewValue().toString());  // //获取文本框修改的值
+                paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
+                if( flightUtils.UpDate_A_By_ID("f_left",paras) ){
+                    ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setLeft(Integer.parseInt(event.getNewValue().toString()));
+                }
+            }
+        });
 
         /*从数据库中获取 航班信息 加入到FlightList*/
 
@@ -201,7 +213,7 @@ public class ManagerWindow {
             tmp.setStart(list.get(i).get("f_start").toString());
             tmp.setDist(list.get(i).get("f_dist").toString());
             tmp.setPrice(  Float.parseFloat( list.get(i).get("f_price").toString()));
-
+            tmp.setLeft(Integer.parseInt(list.get(i).get("f_left").toString()));
             FlightObList.add(tmp);
         }
        FlightTable.setItems(FlightObList);
@@ -222,7 +234,7 @@ public class ManagerWindow {
 
 
          flighttextField=new ArrayList<TextField>();
-        for(int i=0;i<8;i++)
+        for(int i=0;i<flight_observableList.size();i++)
             flighttextField.add( (TextField)root.lookup("#flightTextfield_"+i));
 
     }
@@ -239,6 +251,7 @@ public class ManagerWindow {
         flightMap.put("起点","f_start");
         flightMap.put("终点","f_dist");
         flightMap.put("价格","f_price");
+        flightMap.put("余票","f_left");
 
     }
 
@@ -269,6 +282,7 @@ public class ManagerWindow {
                 tmp.setStart(selectedlist.get(i).get("f_start").toString());
                 tmp.setDist(selectedlist.get(i).get("f_dist").toString());
                 tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
+                tmp.setLeft(Integer.parseInt(selectedlist.get(i).get("f_left").toString()));
                 FlightObList.add(tmp);
             }
 
@@ -288,6 +302,7 @@ public class ManagerWindow {
             tmp.setStart(flighttextField.get(5).getText());
             tmp.setDist(flighttextField.get(6).getText());
             tmp.setPrice(Float.parseFloat(flighttextField.get(7).getText()));
+            tmp.setLeft(Integer.parseInt(flighttextField.get(8).getText()));
 
             List<Object> paras = new ArrayList<Object>();
             paras.add(tmp.getId());
@@ -298,6 +313,7 @@ public class ManagerWindow {
             paras.add(tmp.getStart());
             paras.add(tmp.getDist());
             paras.add(tmp.getPrice());
+            paras.add(tmp.getLeft());
             //若数据库添加成功 则显示到列表
             if (flightUtils.InsertFlight(paras)) {
                 FlightObList.add(tmp);
