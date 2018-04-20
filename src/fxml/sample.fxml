@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="b1" layoutX="137.0" layoutY="441.0" mnemonicParsing="false" text="立即注册" />
+      <Text fx:id="t1" layoutX="46.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="创建账户" wrappingWidth="145.740234375">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Text layoutX="65.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="用户名：" />
+      <Text layoutX="83.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="密码：" />
+      <Text layoutX="35.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="再次确认密码：" />
+      <Text layoutX="59.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="真实名字：" />
+      <Text layoutX="83.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="性别：" />
+      <Text layoutX="83.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="年龄：" />
+      <Text layoutX="47.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="身份证号码：" />
+      <CheckBox fx:id="cb1" layoutX="57.0" layoutY="419.0" mnemonicParsing="false" text="我已阅读并同意该使用条件及隐私声明" />
+      <TextField fx:id="tf1" layoutX="125.0" layoutY="111.0" />
+      <TextField fx:id="tf4" layoutX="125.0" layoutY="210.0" />
+      <TextField fx:id="tf6" layoutX="125.0" layoutY="306.0" />
+      <PasswordField fx:id="tf2" layoutX="125.0" layoutY="146.0" />
+      <PasswordField fx:id="tf3" layoutX="125.0" layoutY="178.0" />
+      <RadioButton fx:id="rb1" layoutX="125.0" layoutY="243.0" mnemonicParsing="false" selected="true" text="男">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rb2" layoutX="181.0" layoutY="243.0" mnemonicParsing="false" text="女" toggleGroup="$group" />
+      <TextField fx:id="tf5" layoutX="125.0" layoutY="273.0" />
+      <TextArea layoutX="46.0" layoutY="343.0" prefHeight="67.0" prefWidth="246.0" text="本网站用户应遵守《中华人民共和国保密&#10;法》、《计算机信息系统国际联网保密管&#10;理规定》、《中华人民共和国计算机信息&#10;系统安全保护条例》、《计算机信息网络&#10;国际联网安全保护管理办法》、《中华人&#10;民共和国计算机信息网络国际联网管理暂&#10;行规定》及其实施办法等相关法律法规的&#10;任何及所有的规定，本站用户自己对以任&#10;何方式使用服务的任何行为及其结果承担&#10;全部责任。在任何情况下，如果天下军事&#10;合理地认为您的任何行为，包括但不限于&#10;您的任何言论和其他行为违反或可能违反&#10;上述法律和法规的任何规定，航趣飞机网&#10;可在任何时候不经任何事先通知终止向您&#10;提供服务。" />
+   </children>
+</AnchorPane>
