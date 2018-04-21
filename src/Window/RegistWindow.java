@@ -50,7 +50,7 @@ public class RegistWindow {
         {
             //System.out.print(tf6.getText()+" "+tf5.getText()+ " "+tf4.getText());
                 UserUtils m_re = new UserUtils();
-                m_re.getConnection();
+              //  m_re.getConnection();
                 int agree = 0;
                 String sex = "男";
                 if(cb1.isSelected()){agree=1;//System.out.print("tongyi");

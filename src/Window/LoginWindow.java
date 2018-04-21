@@ -81,7 +81,7 @@ public class LoginWindow extends Application
                 }
                 else {
                     UserUtils dl = new UserUtils();
-                   dl.getConnection();
+               //    dl.getConnection();
                     try {
                         switch (dl.isexst_user(userTextField.getText(), pwBox.getText())) {
                             case 0:

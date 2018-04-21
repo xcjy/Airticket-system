@@ -6,21 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 public class FlightUtils extends MysqlUtils{
-    private MysqlUtils mysqlUtils;
 
     public FlightUtils(){
-        mysqlUtils=new MysqlUtils();
-        mysqlUtils.getConnection();
-
+       this.getConnection();
     }
 
 
     /* 添加一个航班 参数为List数组*/
     public  boolean InsertFlight(List<Object> params)
     {
+
         String sql="INSERT INTO `airlineticket`.`flight` VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
         try {
-             mysqlUtils.updateByPreparedStatement(sql, params);
+              this.updateByPreparedStatement(sql, params);
              return true;
         }
         catch (SQLException e){
@@ -34,7 +32,7 @@ public class FlightUtils extends MysqlUtils{
     {
         String sql="DELETE FROM `airlineticket`.`flight` WHERE `f_id`=?";
         try {
-            mysqlUtils.updateByPreparedStatement(sql, params);
+             this.updateByPreparedStatement(sql, params);
             return true;
         }
         catch (SQLException e){
@@ -51,7 +49,7 @@ public class FlightUtils extends MysqlUtils{
        // String sql="UPDATE `airlineticket`.`flight` SET `f_id`= ? WHERE `f_id`=?";
         String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
         try {
-            mysqlUtils.updateByPreparedStatement(sql, params);
+             this.updateByPreparedStatement(sql, params);
             return true;
         }
         catch (SQLException e){
@@ -66,7 +64,7 @@ public class FlightUtils extends MysqlUtils{
         String sql="SELECT * FROM airlineticket.flight where "+attribute+" like ?";
         List< Map<String,Object> >  list = new ArrayList<  Map<String,Object>>();
         try{
-            list=mysqlUtils.findModeResult(sql, paras);
+            list=this.findModeResult(sql, paras);
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -81,7 +79,7 @@ public class FlightUtils extends MysqlUtils{
           List< Map<String,Object> >  list = new ArrayList<  Map<String,Object>>();
 
           try {
-               list =mysqlUtils.findModeResult(sql, null);
+               list =this.findModeResult(sql, null);
           }
           catch (SQLException e){
               e.printStackTrace();

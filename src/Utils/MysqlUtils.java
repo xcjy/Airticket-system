@@ -13,7 +13,7 @@ public class MysqlUtils {
           private static  final String USERNAME="root";
           private static  final String PASSWORD="123456";
 
-          private Connection connection;
+          public Connection connection;
           private PreparedStatement preparedStatement;
           private ResultSet resultSet;
 
