@@ -88,4 +88,74 @@ public class UserUtils extends MysqlUtils{
         }
         return re;
     }
+    public int changepw(String a,String b,String c,String d)throws SQLException
+    {
+        int n=0;
+
+        String sql="select * from user;";
+       // Statement statement=con.createStatement();
+       // ResultSet resultSet = statement.executeQuery(sql);
+        List<Map<String,Object>> result= new ArrayList<>();
+        result=this.findModeResult(sql,null);
+        String User;
+        String Sfz;
+        boolean ex=false;
+       // while(resultSet.next())
+        for(int i=0;i<result.size();i++)
+        {
+         //   User=resultSet.getString("user");
+         //   Sfz=resultSet.getString("sfz");
+            User=result.get(i).get("user").toString();
+            Sfz=result.get(i).get("sfz").toString();
+
+            if(User.equals(a)){
+                ex=true;
+                if(Sfz.equals(d)) {
+                    if(b.equals(c)){
+                      //  sql = "UPDATE `airlineticket`.`user` SET `pass`="+"'"+b+"'"+" WHERE `sfz`='1';";
+                      sql=   "UPDATE `airlineticket`.`user` SET `pass`= ? WHERE `sfz`=?";
+
+                      //  PreparedStatement pre=con.prepareStatement(sql);
+                       // pre.executeUpdate();
+                        List<Object> params=new ArrayList<>();
+                        params.add(b);
+                        params.add(d);
+                        this.updateByPreparedStatement(sql,params);
+                        // System.out.print(sql);
+                        //修改成功
+                        n=0;
+                    }
+                    if(!b.equals(c))n=1;
+                }
+                else n=2;//身份证号码不匹配
+            }
+        }
+        if(!ex)n=3;//该账号没有注册
+
+     //   resultSet.close();
+        return n;
+    }
+
+    public int isexst_admin(String a,String b)throws SQLException {
+        String sql="select * from admin;";
+        List<Map<String,Object>> result= new ArrayList<>();
+        result= this.findModeResult(sql,null);
+        int c= 0;
+        String User;
+        String paw;
+        boolean ex=false;
+        for(int i=0;i<result.size();i++)
+        {
+            User=result.get(i).get("identifier").toString();
+            paw=result.get(i).get("adpss").toString();
+            if(User.equals(a)){
+                ex=true;
+                c=1;
+                if(paw.equals(b))c=2;
+            }
+        }
+        return c;
+    }
+
+
 }

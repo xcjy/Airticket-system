@@ -40,9 +40,10 @@ public class ManagerWindow {
     private ComboBox<String> flightParams;
     private Map<String,String> flightMap;
 
+    private Stage FlightStage;
 
     public ManagerWindow(){
-         Stage FlightStage=new Stage();
+         FlightStage=new Stage();
         try{
              root = FXMLLoader.load(getClass().getResource("../fxml/Manager.fxml"));
         } catch (Exception e){
@@ -328,7 +329,12 @@ public class ManagerWindow {
                     FlightObList.remove(selected);
             }
         });
-
+      button_logout.setOnAction(event -> {
+          FlightStage.hide();
+         LoginWindow LW= new LoginWindow();
+         Stage s1=new Stage();
+           LW.start(s1);
+      });
 
 
 

@@ -21,7 +21,7 @@ public class LoginWindow extends Application
 {
 
     @Override
-    public void start(Stage primaryStage){
+    public void  start(Stage primaryStage){
 
 
         GridPane grid=new GridPane();
@@ -64,24 +64,37 @@ public class LoginWindow extends Application
         ra2.setToggleGroup(gp);
         ra1.setSelected(true);
 
+
+        Button bt2=new Button("忘记密码");
+        grid.add(bt2,1,5);
+
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
+                UserUtils dl = new UserUtils();
                 if(ra1.isSelected()){
-                    if((userTextField.getText().equals("admin"))&&(pwBox.getText().equals("admin"))) {
-                        //System.out.print("guanliyuan");
-                        primaryStage.hide();
-                        new ManagerWindow();
+                    try {
+                        switch (dl.isexst_admin(userTextField.getText(), pwBox.getText())) {
+                            case 0:
+                                Alert cw1 = new Alert(Alert.AlertType.ERROR,"该账号没有注册");
+                                cw1.showAndWait();
+                                break;
+                            case 1:
+                                Alert cw2 = new Alert(Alert.AlertType.ERROR,"密码错误");
+                                cw2.showAndWait();
+                                break;
+                            case 2:
+                                //登陆成功
+                                ManagerWindow managerWindow = new ManagerWindow();
+                                break;
+                        }
+                    } catch (Exception e) {
                     }
-                    if((!userTextField.getText().equals("admin"))||(!pwBox.getText().equals("admin"))) {
-                        Alert yzcw = new Alert(Alert.AlertType.ERROR,"管理员验证失败");
-                        yzcw.showAndWait();
-                    }
+
                 }
                 else {
-                    UserUtils dl = new UserUtils();
-               //    dl.getConnection();
+                    //    dl.getConnection();
                     try {
                         switch (dl.isexst_user(userTextField.getText(), pwBox.getText())) {
                             case 0:
@@ -109,6 +122,13 @@ public class LoginWindow extends Application
                 RegistWindow re = new RegistWindow();
                 re.Init_Bre();
 
+            }
+        });
+
+        bt2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                findpassW fpw = new findpassW();
             }
         });
 
