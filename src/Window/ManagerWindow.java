@@ -1,7 +1,9 @@
 package Window;
 
 import Entity.Flight;
+import Entity.User;
 import Utils.FlightUtils;
+import Utils.UserUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -25,20 +27,38 @@ import java.util.Map;
 public class ManagerWindow {
 
     private FlightUtils flightUtils;
+    private UserUtils userUtils;
+
     private Parent root;
 
     private TableView FlightTable;
+    private TableView UserTable;
+
     private ObservableList<Flight> FlightObList;
+    private ObservableList<User> UserObList;
 
     private Button button_addflight;
     private Button button_deleteflight;
     private Button button_searchflight;
     private Button button_logout;
+
+    private Button button_searchuser;
+    private Button button_adduser;
+    private Button button_deleteuser;
+
+
     private List<TextField> flighttextField;
-    private TextField searchTextField;
+    private List<TextField> usertextField;
+
+
+    private TextField searchFlightTextfield;
+    private TextField searchUserTextfield;
 
     private ComboBox<String> flightParams;
+    private ComboBox<String> userparams;
+
     private Map<String,String> flightMap;
+    private Map<String,String> userMap;
 
     private Stage FlightStage;
 
@@ -57,11 +77,14 @@ public class ManagerWindow {
 
         /* 连接数据库*/
       flightUtils=new FlightUtils();
+      userUtils=new UserUtils();
 
         InitFlightControl();
         Flight_Buttonevent();
-
+        InitUserControl();
+        User_Buttonevent();
     }
+
 
 
    //初始化控件
@@ -71,10 +94,10 @@ public class ManagerWindow {
         FlightObList=FXCollections.observableArrayList();
         button_addflight=(Button) root.lookup("#button_addflight");
         button_deleteflight=(Button) root.lookup("#button_deleteflight");
-        button_searchflight=(Button) root.lookup("#button_search");
+        button_searchflight=(Button) root.lookup("#button_searchflight");
         button_logout=(Button)root.lookup("#button_logout");
 
-        searchTextField=(TextField) root.lookup("#searchTextfield");
+        searchFlightTextfield=(TextField) root.lookup("#searchFlightTextfield");
         flightParams =(ComboBox<String>)root.lookup("#flightparams");
         initFlightComboBox();
         flightParams.setItems(FXCollections.observableArrayList(flightMap.keySet()));
@@ -236,6 +259,136 @@ public class ManagerWindow {
        FlightTable.setItems(FlightObList);
     }
 
+    public void InitUserControl(){
+        //寻找控件
+        UserTable=(TableView)root.lookup("#UserTable");
+        UserObList=FXCollections.observableArrayList();
+
+        button_deleteuser=(Button) root.lookup("#button_deleteuser");
+        button_searchuser=(Button) root.lookup("#button_searchuser");
+
+        searchUserTextfield=(TextField) root.lookup("#searchUserTextfield");
+        userparams =(ComboBox<String>)root.lookup("#userparams");
+
+        initUserComboBox();
+
+        userparams.setItems(FXCollections.observableArrayList(userMap.keySet()));
+        userparams.getSelectionModel().select(0);
+
+
+
+        /*绑定User  与 observablelist*/
+        String[] userpara=new String[] {"user","password","name","sex","identity"};
+
+        ObservableList<TableColumn> user_observableList=UserTable.getColumns();
+   // System.out.println(user_observableList.size());
+
+        for(int i=0;i<user_observableList.size();i++)
+        {
+            //先绑定
+            user_observableList.get(i).setCellValueFactory(new PropertyValueFactory<User,String>(userpara[i])); //与User中的属性关联
+
+            user_observableList.get(i).setCellFactory(TextFieldTableCell.<User>forTableColumn());  // 设置成表格可编辑
+        }
+
+        // 界面修改用户信息
+         user_observableList.get(0).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+             @Override
+             public void handle(TableColumn.CellEditEvent event) {
+                 String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                 List<Object> paras=new ArrayList<Object>();      //传参
+                 paras.add(a_value);
+                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                 if( userUtils.UpDate_A_By_ID("user",paras) ){
+                     ((User) UserTable.getSelectionModel().getSelectedItem()).setUser(event.getNewValue().toString());
+                 }
+
+             }
+         });
+
+        user_observableList.get(1).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(a_value);
+                paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                if( userUtils.UpDate_A_By_ID("pass",paras) ){
+                    ((User) UserTable.getSelectionModel().getSelectedItem()).setPassword(event.getNewValue().toString());
+                }
+
+            }
+
+
+        });
+
+        user_observableList.get(2).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(a_value);
+                paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                if( userUtils.UpDate_A_By_ID("name",paras) ){
+                    ((User) UserTable.getSelectionModel().getSelectedItem()).setName(event.getNewValue().toString());
+                }
+
+            }
+        });
+
+        user_observableList.get(3).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(a_value);
+                paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                if( userUtils.UpDate_A_By_ID("sex",paras) ){
+                    ((User) UserTable.getSelectionModel().getSelectedItem()).setSex(event.getNewValue().toString());
+                }
+
+            }
+        });
+
+        user_observableList.get(4).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(a_value);
+                paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                if( userUtils.UpDate_A_By_ID("sfz",paras) ){
+                    ((User) UserTable.getSelectionModel().getSelectedItem()).setIdentity(event.getNewValue().toString());
+                }
+
+            }
+        });
+
+        List<Map<String,Object>> selectuserlist= userUtils.SelectAllUser();
+
+        System.out.println(selectuserlist.get(0).get(""));
+
+        for(int i=0;i<selectuserlist.size();i++){
+            User tmpuser =new User();
+            tmpuser.setIdentity(selectuserlist.get(i).get("sfz").toString());
+            tmpuser.setUser(selectuserlist.get(i).get("user").toString());
+            tmpuser.setPassword(selectuserlist.get(i).get("pass").toString());
+            tmpuser.setSex(selectuserlist.get(i).get("sex").toString());
+            tmpuser.setName(selectuserlist.get(i).get("name").toString());
+
+            UserObList.add(tmpuser);
+        }
+      UserTable.setItems(UserObList);
+
+
+
+    }
+
     //初始化ComboBox
     public void initFlightComboBox()
     {
@@ -252,6 +405,14 @@ public class ManagerWindow {
 
     }
 
+    public void initUserComboBox(){
+        userMap=new HashMap<>();
+        userMap.put("用户名","user");
+        userMap.put("姓名","name");
+        userMap.put("身份证","sfz");
+
+    }
+
 
     private void Flight_Buttonevent() {
         //查询航班事件
@@ -260,7 +421,7 @@ public class ManagerWindow {
             String attribute = flightMap.get(flightParams.getValue());
            // System.out.println(attribute);
             //获取要检索的关键字
-            String keywords = "%" + searchTextField.getText() + "%";
+            String keywords = "%" + searchFlightTextfield.getText() + "%";
             //System.out.println(keywords);
             //传参  执行SQL语句
             List<Object> likeparams = new ArrayList<Object>();
@@ -334,6 +495,54 @@ public class ManagerWindow {
          LoginWindow LW= new LoginWindow();
          Stage s1=new Stage();
            LW.start(s1);
+      });
+
+
+
+
+    }
+
+    private  void User_Buttonevent(){
+       button_searchuser.setOnAction(event -> {
+
+           //  获取要检索的属性
+           String attribute=userMap.get(userparams.getValue());
+           //获取要检索的关键字
+           String keywords = "%" + searchUserTextfield.getText() + "%";
+
+           //传参  执行SQL语句
+           List<Object> likeparams = new ArrayList<Object>();
+           likeparams.add(keywords);
+           List<Map<String, Object>> selectedlist = userUtils.Select_Where_A_like_B(attribute,likeparams);
+
+           UserObList.clear();
+           for (int i = 0; i < selectedlist.size(); i++) {
+               User tmp =new User();
+               tmp.setUser(selectedlist.get(i).get("user").toString());
+               tmp.setPassword(selectedlist.get(i).get("pass").toString());
+               tmp.setName(selectedlist.get(i).get("name").toString());
+               tmp.setSex(selectedlist.get(i).get("old").toString());
+               tmp.setIdentity(selectedlist.get(i).get("sfz").toString());
+               UserObList.add(tmp);
+           }
+
+
+
+       });
+
+      button_deleteuser.setOnAction(event -> {
+
+              User selected = (User) UserTable.getSelectionModel().getSelectedItem();
+              if (selected != null) {
+                  //若数据库删除成功 那就删除
+                  List<Object> paras = new ArrayList<Object>();
+                  paras.add(selected.getIdentity() );
+
+                      if(userUtils.DeleteUserById(paras)){
+                        UserObList.remove(selected);
+                      }
+              }
+
       });
 
 

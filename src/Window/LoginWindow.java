@@ -87,6 +87,7 @@ public class LoginWindow extends Application
                             case 2:
                                 //登陆成功
                                 ManagerWindow managerWindow = new ManagerWindow();
+                                primaryStage.hide();
                                 break;
                         }
                     } catch (Exception e) {
