@@ -1,5 +1,6 @@
 # 机票预定系统
-开发环境：
-WIN10    JDK10
-JAVAFX
-MYSQL5.7
+运行环境：
+操作系统：WIN10    
+开发工具包：JDK 10.0.1    
+数据库：MYSQL 5.7   
+GUI: JAVAFX  
