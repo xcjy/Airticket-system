@@ -72,6 +72,19 @@ public class FlightUtils extends MysqlUtils{
         return  list;
     }
 
+    public List<Map<String,Object>> Select_Flight_By_start_end_ftime(List<Object> paras)
+    {
+       String sql=" SELECT * FROM airlineticket.flight where f_start like ? and f_dist like ? and f_stime like ?";
+        List< Map<String,Object> >  list = new ArrayList<  Map<String,Object>>();
+        try{
+            list=this.findModeResult(sql, paras);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  list;
+
+    }
     //查询全部航班
      public List<Map<String, Object>> SelectAllFlight()
      {

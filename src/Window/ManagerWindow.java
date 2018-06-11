@@ -37,18 +37,15 @@ public class ManagerWindow {
     private ObservableList<Flight> FlightObList;
     private ObservableList<User> UserObList;
 
-    private Button button_addflight;
-    private Button button_deleteflight;
+
     private Button button_searchflight;
     private Button button_logout;
 
     private Button button_searchuser;
-    private Button button_adduser;
-    private Button button_deleteuser;
+
 
 
     private List<TextField> flighttextField;
-    private List<TextField> usertextField;
 
 
     private TextField searchFlightTextfield;
@@ -62,7 +59,12 @@ public class ManagerWindow {
 
     private Stage FlightStage;
 
+    private MenuItem addflight=new MenuItem("添加航班");
+    private MenuItem deleteflight=new MenuItem("删除航班");
+    private MenuItem deleteuser=new MenuItem("删除用户");
+
     public ManagerWindow(){
+
          FlightStage=new Stage();
         try{
              root = FXMLLoader.load(getClass().getResource("../fxml/Manager.fxml"));
@@ -74,6 +76,10 @@ public class ManagerWindow {
         FlightStage.setTitle("Hello,管理员");
         FlightStage.setScene(scene);
         FlightStage.show();
+
+
+
+
 
         /* 连接数据库*/
       flightUtils=new FlightUtils();
@@ -89,22 +95,34 @@ public class ManagerWindow {
 
    //初始化控件
     public void InitFlightControl(){
+
+
+
         //寻找控件
         FlightTable=(TableView)root.lookup("#FlightTable");
         FlightObList=FXCollections.observableArrayList();
-        button_addflight=(Button) root.lookup("#button_addflight");
-        button_deleteflight=(Button) root.lookup("#button_deleteflight");
+
         button_searchflight=(Button) root.lookup("#button_searchflight");
         button_logout=(Button)root.lookup("#button_logout");
 
         searchFlightTextfield=(TextField) root.lookup("#searchFlightTextfield");
         flightParams =(ComboBox<String>)root.lookup("#flightparams");
+
+
         initFlightComboBox();
         flightParams.setItems(FXCollections.observableArrayList(flightMap.keySet()));
         flightParams.getSelectionModel().select(0);
         flighttextField=new ArrayList<TextField>();
         for(int i=0;i<9;i++)
             flighttextField.add( (TextField)root.lookup("#flightTextfield_"+i));
+
+        //设置右键
+        ContextMenu cm_flighttable=new ContextMenu();
+        cm_flighttable.getItems().add(addflight);
+        cm_flighttable.getItems().add(deleteflight);
+
+
+        FlightTable.setContextMenu(cm_flighttable);
 
 
           /*绑定Flight 与 observablelist*/
@@ -264,7 +282,6 @@ public class ManagerWindow {
         UserTable=(TableView)root.lookup("#UserTable");
         UserObList=FXCollections.observableArrayList();
 
-        button_deleteuser=(Button) root.lookup("#button_deleteuser");
         button_searchuser=(Button) root.lookup("#button_searchuser");
 
         searchUserTextfield=(TextField) root.lookup("#searchUserTextfield");
@@ -275,7 +292,9 @@ public class ManagerWindow {
         userparams.setItems(FXCollections.observableArrayList(userMap.keySet()));
         userparams.getSelectionModel().select(0);
 
-
+       ContextMenu cm_usertable=new ContextMenu();
+       cm_usertable.getItems().add(deleteuser);
+       UserTable.setContextMenu(cm_usertable);
 
         /*绑定User  与 observablelist*/
         String[] userpara=new String[] {"user","password","name","sex","identity"};
@@ -415,6 +434,8 @@ public class ManagerWindow {
 
 
     private void Flight_Buttonevent() {
+
+
         //查询航班事件
         button_searchflight.setOnAction(event -> {
             //  获取要检索的属性
@@ -448,8 +469,7 @@ public class ManagerWindow {
         });
 
         //添加航班事件
-        button_addflight.setOnAction(event ->
-        {
+        addflight.setOnAction(event -> {
             System.out.println(flighttextField.get(0).getText());
             Flight tmp = new Flight();
             tmp.setId(flighttextField.get(0).getText());
@@ -476,11 +496,12 @@ public class ManagerWindow {
             if (flightUtils.InsertFlight(paras)) {
                 FlightObList.add(tmp);
             }
+
+
         });
 
         //删除选中航班事件
-        button_deleteflight.setOnAction(event ->
-        {
+        deleteflight.setOnAction(event -> {
             Flight selected = (Flight) FlightTable.getSelectionModel().getSelectedItem();
             if (selected != null) {
                 //若数据库删除成功 那就删除
@@ -489,6 +510,7 @@ public class ManagerWindow {
                 if (flightUtils.DeleteFlightById(paras))
                     FlightObList.remove(selected);
             }
+
         });
       button_logout.setOnAction(event -> {
           FlightStage.hide();
@@ -496,7 +518,6 @@ public class ManagerWindow {
          Stage s1=new Stage();
            LW.start(s1);
       });
-
 
 
 
@@ -530,26 +551,26 @@ public class ManagerWindow {
 
        });
 
-      button_deleteuser.setOnAction(event -> {
+       //删除用户
+       deleteuser.setOnAction(event -> {
+           User selected = (User) UserTable.getSelectionModel().getSelectedItem();
+           if (selected != null) {
+               //若数据库删除成功 那就删除
+               List<Object> paras = new ArrayList<Object>();
+               paras.add(selected.getIdentity() );
 
-              User selected = (User) UserTable.getSelectionModel().getSelectedItem();
-              if (selected != null) {
-                  //若数据库删除成功 那就删除
-                  List<Object> paras = new ArrayList<Object>();
-                  paras.add(selected.getIdentity() );
-
-                      if(userUtils.DeleteUserById(paras)){
-                        UserObList.remove(selected);
-                      }
-              }
-
-      });
+               if(userUtils.DeleteUserById(paras)){
+                   UserObList.remove(selected);
+               }
+           }
+       });
 
 
 
 
     }
 
+    //格式化日期
     String CutPoint0(String time)
     {
          return time.substring(0,time.length()-5);

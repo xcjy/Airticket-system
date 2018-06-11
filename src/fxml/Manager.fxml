@@ -47,11 +47,9 @@
                            </children>
                         </HBox>
                         <Button fx:id="button_searchflight" layoutX="701.0" layoutY="23.0" mnemonicParsing="false" text="搜索航班" />
-                        <Button fx:id="button_deleteflight" layoutX="537.0" layoutY="575.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="300.0" text="删除选中航班" />
                         <Label layoutX="48.0" layoutY="28.0" text="属性" />
                         <ComboBox fx:id="flightparams" layoutX="86.0" layoutY="23.0" prefHeight="30.0" prefWidth="117.0" />
                         <TextField fx:id="searchFlightTextfield" layoutX="203.0" layoutY="23.0" prefHeight="30.0" prefWidth="498.0" />
-                        <Button fx:id="button_addflight" layoutX="16.0" layoutY="575.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="300.0" text="添加航班" />
                      </children>
                   </AnchorPane>
             </content>
@@ -73,7 +71,6 @@
                         <ComboBox fx:id="userparams" layoutX="117.0" layoutY="52.0" prefWidth="150.0" />
                         <TextField fx:id="searchUserTextfield" layoutX="267.0" layoutY="52.0" prefHeight="30.0" prefWidth="241.0" />
                         <Button fx:id="button_searchuser" layoutX="511.0" layoutY="52.0" mnemonicParsing="false" text="搜索用户" />
-                        <Button fx:id="button_deleteuser" layoutX="551.0" layoutY="414.0" mnemonicParsing="false" text="删除用户" />
                      </children></AnchorPane>
             </content>
           </Tab>

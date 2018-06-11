@@ -108,7 +108,7 @@ public class LoginWindow extends Application
                                 break;
                             case 2:
                                 //登陆成功
-                                UserWindow userWindow=new UserWindow();
+                                UserWindow userWindow=new UserWindow(userTextField.getText());
                                 primaryStage.hide();
                                 System.out.println("登陆成功");
                                 break;
