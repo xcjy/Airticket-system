@@ -61,15 +61,14 @@
       <file leaf-file-name="ManagerWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Window/ManagerWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="504" column="75" selection-start-line="504" selection-end-line="505" />
+            <state relative-caret-position="10640">
+              <caret line="854" column="12" selection-start-line="854" selection-start-column="12" selection-end-line="854" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ManagerWindow#0;class#ManagerWindow#0" />
                 <element signature="method#InitFlightControl#0;class#ManagerWindow#0" />
-                <element signature="e#18420#18428#0" expanded="true" />
-                <element signature="e#23195#23196#0" expanded="true" />
-                <element signature="e#23252#23253#0" expanded="true" />
+                <element signature="method#EditFlightTable#0;class#ManagerWindow#0" />
+                <element signature="method#EditUserTable#0;class#ManagerWindow#0" />
               </folding>
             </state>
           </provider>
@@ -78,8 +77,8 @@
       <file leaf-file-name="RegistWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Window/RegistWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+            <state relative-caret-position="1197">
+              <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -87,47 +86,35 @@
       <file leaf-file-name="PassengerUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils/PassengerUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="418">
+              <caret line="27" column="20" selection-start-line="27" selection-end-line="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#95#96#0" expanded="true" />
-                <element signature="e#130#131#0" expanded="true" />
-                <element signature="e#446#468#0" expanded="true" />
-                <element signature="e#833#855#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="findpassW.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Window/findpassW.java">
+      <file leaf-file-name="OrderUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/OrderUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/UserUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+            <state relative-caret-position="1634">
+              <caret line="91" column="11" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#175#176#0" expanded="true" />
-                <element signature="e#210#211#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginWindow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Window/LoginWindow.java">
+      <file leaf-file-name="FlightUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/FlightUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="110" column="92" selection-start-line="110" selection-start-column="92" selection-end-line="110" selection-end-column="92" />
+            <state relative-caret-position="1159">
+              <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,44 +122,73 @@
       <file leaf-file-name="UserWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Window/UserWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="175" column="48" selection-start-line="175" selection-start-column="48" selection-end-line="175" selection-end-column="48" />
+            <state relative-caret-position="540">
+              <caret line="396" column="45" selection-start-line="396" selection-start-column="45" selection-end-line="396" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#InitFlightControl#0;class#UserWindow#0" />
-                <element signature="method#InitUserControl#0;class#UserWindow#0" />
-                <element signature="e#4221#4229#0" expanded="true" />
-                <element signature="method#User_Buttonevent#0;class#UserWindow#0" />
+                <element signature="method#RefreshFlightTable#0;class#UserWindow#0" />
+                <element signature="method#InitPassengerControl#0;class#UserWindow#0" />
+                <element signature="method#Flight_Buttonevent#0;class#UserWindow#0" />
+                <element signature="e#6767#6775#0" expanded="true" />
+                <element signature="e#8313#8321#0" expanded="true" />
+                <element signature="e#9152#9160#0" expanded="true" />
+                <element signature="method#InitOrderControl#0;class#UserWindow#0" />
+                <element signature="e#10925#10933#0" expanded="true" />
+                <element signature="method#Order_Buttonevent#0;class#UserWindow#0" />
+                <element signature="e#12182#12190#0" expanded="true" />
+                <element signature="e#12424#12432#0" expanded="true" />
+                <element signature="e#12662#12670#0" expanded="true" />
                 <element signature="method#dateConvert#0;class#UserWindow#0" />
-                <element signature="e#7434#7435#0" expanded="true" />
-                <element signature="e#7490#7491#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fpw.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/fpw.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Manager.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/Manager.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+      <file leaf-file-name="MysqlUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/MysqlUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state relative-caret-position="1216">
+              <caret line="68" column="17" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="regist.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/regist.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+      <file leaf-file-name="Order.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+            <state relative-caret-position="95">
+              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+              <folding>
+                <element signature="e#1939#1940#0" expanded="true" />
+                <element signature="e#1976#1977#0" expanded="true" />
+                <element signature="e#3123#3124#0" expanded="true" />
+                <element signature="e#3160#3161#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Flight.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Flight.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="22" column="62" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,16 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>shengke</find>
-      <find>user2</find>
-      <find>tableview</find>
-      <find>dl</find>
-      <find>stime</find>
-      <find>UserUtils</find>
-      <find>logout</find>
-      <find>searchflight</find>
-      <find>searchTextfield</find>
-      <find>User_Buttonevent</find>
       <find>flightMap</find>
       <find>flightParams</find>
       <find>combo</find>
@@ -217,8 +223,18 @@
       <find>PsgTable</find>
       <find>contex</find>
       <find>FlightObList</find>
-      <find>delete</find>
       <find>PsgObList</find>
+      <find>println</find>
+      <find>passenge</find>
+      <find>passenger</find>
+      <find>orderparams</find>
+      <find>order</find>
+      <find>deleteOrder</find>
+      <find>delete</find>
+      <find>params</find>
+      <find>deleteo</find>
+      <find>Select_Where_A_like_B</find>
+      <find>Contex</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -257,12 +273,14 @@
         <option value="$PROJECT_DIR$/src/Utils/UserUtils.java" />
         <option value="$PROJECT_DIR$/src/Utils/FlightUtils.java" />
         <option value="$PROJECT_DIR$/src/Entity/Passenger.java" />
-        <option value="$PROJECT_DIR$/src/Window/LoginWindow.java" />
         <option value="$PROJECT_DIR$/src/fxml/23.fxml" />
         <option value="$PROJECT_DIR$/src/controller/MyController.java" />
         <option value="$PROJECT_DIR$/src/fxml/Manager.fxml" />
-        <option value="$PROJECT_DIR$/src/Window/ManagerWindow.java" />
+        <option value="$PROJECT_DIR$/src/Entity/Order.java" />
         <option value="$PROJECT_DIR$/src/Utils/PassengerUtils.java" />
+        <option value="$PROJECT_DIR$/src/Window/ManagerWindow.java" />
+        <option value="$PROJECT_DIR$/src/Window/LoginWindow.java" />
+        <option value="$PROJECT_DIR$/src/Utils/OrderUtils.java" />
         <option value="$PROJECT_DIR$/src/Window/UserWindow.java" />
       </list>
     </option>
@@ -274,11 +292,11 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="682" />
-    <option name="y" value="526" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="267" />
+    <option name="y" value="172" />
     <option name="width" value="1245" />
-    <option name="height" value="654" />
+    <option name="height" value="655" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -289,6 +307,48 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="Window" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,48 +399,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
-            </path>
-            <path>
-              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Airticket-system" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Airticket-system" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="Window" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -559,14 +577,18 @@
       <workItem from="1528032490833" duration="10666000" />
       <workItem from="1528385856110" duration="1167000" />
       <workItem from="1528720435925" duration="18875000" />
+      <workItem from="1528797287557" duration="7835000" />
+      <workItem from="1528898720808" duration="2759000" />
+      <workItem from="1528974628365" duration="26538000" />
+      <workItem from="1529030761441" duration="1954000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200983000" />
+    <option name="totallyTimeSpent" value="240069000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -579,7 +601,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.13561644" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13561644" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -590,7 +612,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.25342464" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.24931507" />
       <window_info anchor="right" id="JetGradle" order="3" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -616,7 +638,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="29" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="55" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -624,6 +649,30 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Window/UserWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7239">
+          <caret line="381" column="49" lean-forward="true" selection-start-line="381" selection-start-column="49" selection-end-line="381" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#InitFlightControl#0;class#UserWindow#0" />
+            <element signature="method#RefreshFlightTable#0;class#UserWindow#0" />
+            <element signature="method#InitPassengerControl#0;class#UserWindow#0" />
+            <element signature="method#Flight_Buttonevent#0;class#UserWindow#0" />
+            <element signature="e#6767#6775#0" expanded="true" />
+            <element signature="e#8313#8321#0" expanded="true" />
+            <element signature="e#9152#9160#0" expanded="true" />
+            <element signature="method#InitOrderControl#0;class#UserWindow#0" />
+            <element signature="e#10925#10933#0" expanded="true" />
+            <element signature="method#Order_Buttonevent#0;class#UserWindow#0" />
+            <element signature="e#12182#12190#0" expanded="true" />
+            <element signature="e#12424#12432#0" expanded="true" />
+            <element signature="e#12662#12670#0" expanded="true" />
+            <element signature="method#dateConvert#0;class#UserWindow#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58824">
@@ -631,13 +680,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/Window/LoginWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -653,9 +696,8 @@
             <element signature="imports" expanded="true" />
             <element signature="method#ManagerWindow#0;class#ManagerWindow#0" />
             <element signature="method#InitFlightControl#0;class#ManagerWindow#0" />
-            <element signature="e#18420#18428#0" expanded="true" />
-            <element signature="e#23195#23196#0" expanded="true" />
-            <element signature="e#23252#23253#0" expanded="true" />
+            <element signature="method#EditFlightTable#0;class#ManagerWindow#0" />
+            <element signature="method#EditUserTable#0;class#ManagerWindow#0" />
           </folding>
         </state>
       </provider>
@@ -667,13 +709,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/Window/LoginWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -681,13 +717,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java" />
     <entry file="file://F:/mysql-connector-java-5.1.46/src/demo/fabric/EmployeesJdbc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -815,6 +845,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.base/javafx/event/EventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java" />
+    <entry file="file://$PROJECT_DIR$/src/controller/MyController.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.fxml/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="2624" selection-start-line="2624" selection-end-line="2624" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Passenger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="66" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="66" />
+          <folding>
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.controls/javafx/scene/control/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2831">
@@ -822,31 +879,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.base/javafx/event/Event.java">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.graphics/javafx/scene/Scene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3059">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
+        <state relative-caret-position="68951">
+          <caret line="3879" selection-start-line="3879" selection-end-line="3879" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Window/findpassW.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.graphics/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152665">
+        <state relative-caret-position="481">
           <caret line="8865" selection-start-line="8865" selection-end-line="8865" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.graphics/javafx/scene/Scene.java">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.base/javafx/event/EventType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69008">
-          <caret line="3889" selection-start-line="3889" selection-end-line="3889" />
+        <state relative-caret-position="481">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.base/javafx/event/EventHandler.java">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.base/javafx/event/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        <state relative-caret-position="165">
+          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Window/LoginWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-201">
+          <caret line="109" column="38" lean-forward="true" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/UserUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="219" column="9" lean-forward="true" selection-start-line="219" selection-start-column="9" selection-end-line="219" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#175#176#0" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/PassengerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="27" column="20" selection-start-line="27" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Window/RegistWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1197">
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding>
+            <element signature="e#1939#1940#0" expanded="true" />
+            <element signature="e#1976#1977#0" expanded="true" />
+            <element signature="e#3123#3124#0" expanded="true" />
+            <element signature="e#3160#3161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -859,64 +972,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Flight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="64" />
+        <state relative-caret-position="304">
+          <caret line="22" column="62" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/Utils/OrderUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/23.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.fxml/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="2624" selection-start-line="2624" selection-end-line="2624" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Passenger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#441#442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/FlightUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="43" />
+        <state relative-caret-position="1634">
+          <caret line="91" column="11" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -925,109 +992,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/MysqlUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1501">
-          <caret line="82" column="51" selection-start-line="82" selection-start-column="51" selection-end-line="82" selection-end-column="51" />
+        <state relative-caret-position="1216">
+          <caret line="68" column="17" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/UserUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#175#176#0" expanded="true" />
-            <element signature="e#210#211#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/findpassW.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/LoginWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="110" column="92" selection-start-line="110" selection-start-column="92" selection-end-line="110" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/RegistWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="69" column="36" lean-forward="true" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Window/ManagerWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="504" column="75" selection-start-line="504" selection-end-line="505" />
+        <state relative-caret-position="10640">
+          <caret line="854" column="12" selection-start-line="854" selection-start-column="12" selection-end-line="854" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#ManagerWindow#0;class#ManagerWindow#0" />
             <element signature="method#InitFlightControl#0;class#ManagerWindow#0" />
-            <element signature="e#18420#18428#0" expanded="true" />
-            <element signature="e#23195#23196#0" expanded="true" />
-            <element signature="e#23252#23253#0" expanded="true" />
+            <element signature="method#EditFlightTable#0;class#ManagerWindow#0" />
+            <element signature="method#EditUserTable#0;class#ManagerWindow#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/PassengerUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/Utils/FlightUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        <state relative-caret-position="1159">
+          <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#95#96#0" expanded="true" />
-            <element signature="e#130#131#0" expanded="true" />
-            <element signature="e#446#468#0" expanded="true" />
-            <element signature="e#833#855#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/fpw.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/Manager.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/regist.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Window/UserWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="175" column="48" selection-start-line="175" selection-start-column="48" selection-end-line="175" selection-end-column="48" />
+        <state relative-caret-position="540">
+          <caret line="396" column="45" selection-start-line="396" selection-start-column="45" selection-end-line="396" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#InitFlightControl#0;class#UserWindow#0" />
-            <element signature="method#InitUserControl#0;class#UserWindow#0" />
-            <element signature="e#4221#4229#0" expanded="true" />
-            <element signature="method#User_Buttonevent#0;class#UserWindow#0" />
+            <element signature="method#RefreshFlightTable#0;class#UserWindow#0" />
+            <element signature="method#InitPassengerControl#0;class#UserWindow#0" />
+            <element signature="method#Flight_Buttonevent#0;class#UserWindow#0" />
+            <element signature="e#6767#6775#0" expanded="true" />
+            <element signature="e#8313#8321#0" expanded="true" />
+            <element signature="e#9152#9160#0" expanded="true" />
+            <element signature="method#InitOrderControl#0;class#UserWindow#0" />
+            <element signature="e#10925#10933#0" expanded="true" />
+            <element signature="method#Order_Buttonevent#0;class#UserWindow#0" />
+            <element signature="e#12182#12190#0" expanded="true" />
+            <element signature="e#12424#12432#0" expanded="true" />
+            <element signature="e#12662#12670#0" expanded="true" />
             <element signature="method#dateConvert#0;class#UserWindow#0" />
-            <element signature="e#7434#7435#0" expanded="true" />
-            <element signature="e#7490#7491#0" expanded="true" />
           </folding>
         </state>
       </provider>

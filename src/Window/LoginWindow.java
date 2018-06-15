@@ -114,6 +114,7 @@ public class LoginWindow extends Application
                                 break;
                         }
                     } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }

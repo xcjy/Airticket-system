@@ -46,10 +46,10 @@
                               <TextField fx:id="flightTextfield_8" prefHeight="24.0" prefWidth="71.0" />
                            </children>
                         </HBox>
-                        <Button fx:id="button_searchflight" layoutX="701.0" layoutY="23.0" mnemonicParsing="false" text="搜索航班" />
-                        <Label layoutX="48.0" layoutY="28.0" text="属性" />
-                        <ComboBox fx:id="flightparams" layoutX="86.0" layoutY="23.0" prefHeight="30.0" prefWidth="117.0" />
-                        <TextField fx:id="searchFlightTextfield" layoutX="203.0" layoutY="23.0" prefHeight="30.0" prefWidth="498.0" />
+                        <Button fx:id="button_searchflight" layoutX="701.0" layoutY="13.0" mnemonicParsing="false" text="搜索航班" />
+                        <Label layoutX="41.0" layoutY="18.0" text="属性" />
+                        <ComboBox fx:id="flightparams" layoutX="86.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
+                        <TextField fx:id="searchFlightTextfield" layoutX="203.0" layoutY="13.0" prefHeight="30.0" prefWidth="498.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -67,16 +67,37 @@
                               <TableColumn prefWidth="186.0" text="身份证" />
                           </columns>
                         </TableView>
-                        <Label layoutX="72.0" layoutY="57.0" text="属性" />
-                        <ComboBox fx:id="userparams" layoutX="117.0" layoutY="52.0" prefWidth="150.0" />
-                        <TextField fx:id="searchUserTextfield" layoutX="267.0" layoutY="52.0" prefHeight="30.0" prefWidth="241.0" />
-                        <Button fx:id="button_searchuser" layoutX="511.0" layoutY="52.0" mnemonicParsing="false" text="搜索用户" />
+                        <Label layoutX="64.0" layoutY="32.0" text="属性" />
+                        <ComboBox fx:id="userparams" layoutX="102.0" layoutY="27.0" prefWidth="150.0" />
+                        <TextField fx:id="searchUserTextfield" layoutX="252.0" layoutY="27.0" prefHeight="8.0" prefWidth="241.0" />
+                        <Button fx:id="button_searchuser" layoutX="493.0" layoutY="27.0" mnemonicParsing="false" text="搜索用户" />
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="机票管理">
+            <Tab fx:id="OrderTable" text="订单管理">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="OrderTable" editable="true" layoutX="42.0" layoutY="74.0" prefHeight="554.0" prefWidth="934.0">
+                          <columns>
+                            <TableColumn prefWidth="101.0" text="订单编号" />
+                            <TableColumn prefWidth="98.0" text="姓名" />
+                              <TableColumn prefWidth="127.0" text="身份证" />
+                              <TableColumn prefWidth="79.0" text="航班编号" />
+                              <TableColumn prefWidth="70.0" text="航班公司" />
+                              <TableColumn prefWidth="65.0" text="机型" />
+                              <TableColumn prefWidth="121.0" text="起飞时间" />
+                              <TableColumn prefWidth="129.0" text="到达时间" />
+                              <TableColumn prefWidth="48.0" text="起点" />
+                              <TableColumn prefWidth="44.0" text="终点" />
+                              <TableColumn prefWidth="51.0" text="价格" />
+                          </columns>
+                        </TableView>
+                        <ComboBox fx:id="orderparams" layoutX="96.0" layoutY="29.0" prefWidth="150.0" />
+                        <Label layoutX="56.0" layoutY="34.0" text="属性" />
+                        <TextField fx:id="searchOrderTextfield" layoutX="246.0" layoutY="29.0" prefHeight="12.0" prefWidth="227.0" />
+                        <Button fx:id="button_searchorder" layoutX="473.0" layoutY="29.0" mnemonicParsing="false" text="搜索订单" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
