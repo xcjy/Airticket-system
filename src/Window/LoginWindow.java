@@ -1,74 +1,56 @@
 package Window;
 
 import Utils.UserUtils;
+import com.jfoenix.controls.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
+import java.awt.*;
 
-public class LoginWindow extends Application
-{
+
+public class LoginWindow extends Application {
+
+
+    // @FXML
+    private JFXButton Button_login;
+    private JFXButton Button_regist;
+    private JFXButton Button_fpw;
+    private JFXRadioButton ra1;
+    private JFXRadioButton ra2;
+    private JFXTextField userTextField;
+    private JFXPasswordField pwBox;
+
 
     @Override
-    public void  start(Stage primaryStage){
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.show();
 
+        Button_login=(JFXButton) root.lookup("#Button_login");
+        Button_regist=(JFXButton) root.lookup("#Button_regist");
+        Button_fpw=(JFXButton) root.lookup("#Button_fpw");
+        userTextField=(JFXTextField)root.lookup("#tf_username");
+        pwBox=(JFXPasswordField)root.lookup("#tf_password");
 
-        GridPane grid=new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap((10));
-        grid.setPadding(new Insets(25,25,25,25));
-
-        Text scenetitle =new Text("机票预订系统");
-        scenetitle.setFont(Font.font("Tahoma",FontWeight.NORMAL,20));
-        grid.add(scenetitle,0,0,2,1);
-
-        Label userName = new Label("账号:");
-        grid.add(userName,0,1);
-        Label pw=new Label("密码:");
-        grid.add(pw,0,2);
-
-        TextField userTextField = new TextField();
-        grid.add(userTextField, 1, 1);
-        PasswordField pwBox = new PasswordField();
-        grid.add(pwBox, 1, 2);
-
-        Button btn=new Button("登陆");
-        HBox hbBtn =new HBox(10);
-        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtn.getChildren().add(btn);
-        grid.add(hbBtn,1,4);
-
-        Button bt1=new Button("注册");
-        grid.add(bt1,0,4);
-        final Text actiontarget=new Text();
-        grid.add(actiontarget,1,6);
-
-        RadioButton ra1 = new RadioButton("管理员");
-        grid.add(ra1,0,3);
-        RadioButton ra2 = new RadioButton("用户");
-        grid.add(ra2,1,3);
+        ra2=(JFXRadioButton)root.lookup("#ra_user");     //ra1
+        ra1=(JFXRadioButton)root.lookup("#ra_admin");   //ra2
         ToggleGroup gp = new ToggleGroup();
         ra1.setToggleGroup(gp);
         ra2.setToggleGroup(gp);
-        ra1.setSelected(true);
+        ra2.setSelected(true);
 
 
-        Button bt2=new Button("忘记密码");
-        grid.add(bt2,1,5);
-
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        Button_login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
@@ -110,7 +92,7 @@ public class LoginWindow extends Application
                                 //登陆成功
                                 UserWindow userWindow=new UserWindow(userTextField.getText());
                                 primaryStage.hide();
-                               // System.out.println("登陆成功");
+                                // System.out.println("登陆成功");
                                 break;
                         }
                     } catch (Exception e) {
@@ -120,8 +102,8 @@ public class LoginWindow extends Application
             }
         });
 
-        //注册
-        bt1.setOnAction(new EventHandler<ActionEvent>() {
+
+        Button_regist.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 RegistWindow re = new RegistWindow();
@@ -129,18 +111,19 @@ public class LoginWindow extends Application
 
             }
         });
-        //忘记1
-        bt2.setOnAction(new EventHandler<ActionEvent>() {
+
+
+        Button_fpw.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 findpassW fpw = new findpassW();
             }
         });
 
-        Scene scene=new Scene(grid,300,275);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
     }
+
+
 
 
     public static void main(String[] args) {

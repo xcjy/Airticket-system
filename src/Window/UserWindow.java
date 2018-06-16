@@ -237,7 +237,11 @@ public class UserWindow {
           UserStage.hide();
           LoginWindow LW= new LoginWindow();
           Stage s1=new Stage();
-          LW.start(s1);
+          try{
+              LW.start(s1);}
+          catch (Exception e){
+              e.printStackTrace();
+          }
 
       });
 

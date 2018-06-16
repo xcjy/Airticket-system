@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="394.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Window.LoginWindow">
+   <children>
+      <JFXButton fx:id="Button_login" buttonType="RAISED" layoutX="78.0" layoutY="204.0" prefHeight="39.0" prefWidth="243.0" ripplerFill="#19dd3d" text="登陆" textAlignment="CENTER" textFill="#1a0b8a">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="tf_username" layoutX="82.0" layoutY="77.0" prefHeight="39.0" prefWidth="234.0" promptText="用户名" />
+      <JFXPasswordField fx:id="tf_password" layoutX="82.0" layoutY="127.0" prefHeight="39.0" prefWidth="234.0" promptText="密码" />
+      <JFXButton fx:id="Button_regist" layoutX="79.0" layoutY="243.0" ripplerFill="#1d388a" text="立即注册" textFill="#792d2d" />
+      <JFXButton fx:id="Button_fpw" layoutX="236.0" layoutY="243.0" text="忘记密码" textFill="#2458d1" />
+      <Label layoutX="97.0" prefHeight="60.0" prefWidth="257.0" text="机票预订系统" textFill="#1d54eb">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <JFXRadioButton fx:id="ra_user" layoutX="89.0" layoutY="177.0" text="用户" />
+      <JFXRadioButton fx:id="ra_admin" layoutX="239.0" layoutY="177.0" text="管理员" />
+   </children>
+</AnchorPane>
