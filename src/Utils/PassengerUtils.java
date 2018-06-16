@@ -10,6 +10,7 @@ public class PassengerUtils extends MysqlUtils {
         this.getConnection();
     }
 
+    // 查询用户的全部乘机人
      public List<Map<String,Object>> SelectAllPsg(String user)
      {
          String sql="SELECT * FROM airlineticket.passenger where user='"+user+"'";
@@ -24,29 +25,27 @@ public class PassengerUtils extends MysqlUtils {
          return list;
      }
 
-
-    /*    待完成~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-
-
-    public List<Map<String,Object>> SelectAllUser()
+    /* 添加一个乘机人 参数为List数组*/
+    public  boolean InsertPsg(List<Object> params)
     {
-        String sql="SELECT * FROM airlineticket.user";
-        List< Map<String,Object> >  list = new ArrayList<  Map<String,Object>>();
 
+        String sql="INSERT INTO `airlineticket`.`passenger` VALUES (?, ?, ?)";
         try {
-            list =this.findModeResult(sql, null);
+            this.updateByPreparedStatement(sql, params);
+            return true;
         }
         catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
-        return list;
     }
 
-    /*  删除一个航班 通过ID */
-    public boolean DeleteUserById(List<Object>params)
+
+
+    /*  删除一个乘机人 通过ID */
+    public boolean DeletePsgById(List<Object>params)
     {
-        String sql="DELETE FROM `airlineticket`.`user` WHERE `sfz`=?";
+        String sql="DELETE FROM `airlineticket`.`passenger` WHERE `id`=?";
         try {
             this.updateByPreparedStatement(sql, params);
             return true;
@@ -58,14 +57,10 @@ public class PassengerUtils extends MysqlUtils {
 
     }
 
-
-
-    /* 更新航班信息通过ID*/
     public boolean UpDate_A_By_ID (String attr ,List <Object> params)
     {
 
-        // String sql="UPDATE `airlineticket`.`flight` SET `f_id`= ? WHERE `f_id`=?";
-        String sql="UPDATE `airlineticket`.`user` SET "+ attr +"= ? WHERE `sfz`=?";
+        String sql="UPDATE `airlineticket`.`passenger` SET "+ attr +"= ? WHERE `id`=?";
         try {
             this.updateByPreparedStatement(sql, params);
             return true;
@@ -75,5 +70,8 @@ public class PassengerUtils extends MysqlUtils {
             return false;
         }
     }
+
+
+
 
 }

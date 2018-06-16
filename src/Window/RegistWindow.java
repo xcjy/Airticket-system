@@ -11,14 +11,15 @@ import javafx.stage.Stage;
 public class RegistWindow {
     Parent root;
     Button b_re;
-    TextField tf1,tf2,tf3,tf4,tf5,tf6 ;
+    TextField tf1,tf2,tf3,tf4,tf6 ;
     CheckBox cb1;
     Text t1;
     RadioButton rb1,rb2;
+    Stage registerStage=new Stage();
    // ToggleGroup group = new ToggleGroup();
 
     public RegistWindow() {
-        Stage registerStage=new Stage();
+
         try{
             root = FXMLLoader.load(getClass().getResource("../fxml/regist.fxml"));
         }
@@ -37,7 +38,7 @@ public class RegistWindow {
         tf2=(TextField)root.lookup("#tf2");
         tf3=(TextField)root.lookup("#tf3");
         tf4=(TextField)root.lookup("#tf4");
-        tf5=(TextField)root.lookup("#tf5");
+     //   tf5=(TextField)root.lookup("#tf5");
         tf6=(TextField)root.lookup("#tf6");
         cb1=(CheckBox)root.lookup("#cb1");
         rb1=(RadioButton)root.lookup("#rb1");
@@ -59,7 +60,7 @@ public class RegistWindow {
                 }
 
                 try {
-                    switch (m_re.re_user(tf1.getText(), tf2.getText(), tf3.getText(),tf4.getText(),sex,tf5.getText(),tf6.getText(),agree)) {
+                    switch (m_re.re_user(tf1.getText(), tf2.getText(), tf3.getText(),tf4.getText(),sex,tf6.getText(),agree)) {
                         case 0:
                             //请认真阅读声明条款
                             //System.out.print("0");
@@ -80,7 +81,14 @@ public class RegistWindow {
                             break;
                         case 3:
                             //注册成功
-                            //System.out.print("3");
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle(" ");
+                            alert.setHeaderText(null);
+                            alert.setContentText("注册成功");
+
+                            alert.showAndWait();
+                            registerStage.hide();
+                            System.out.println(alert.getResult());
                             break;
                     }
                 } catch (Exception e) { }

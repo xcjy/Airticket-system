@@ -14,7 +14,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="51.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="原账号：" />
+      <Text layoutX="51.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="账号：" />
       <Text layoutX="51.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="新密码：" />
       <Text layoutX="14.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="再次输入密码：" />
       <Text layoutX="20.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="身份证验证：" />

@@ -40,7 +40,7 @@ public class UserUtils extends MysqlUtils{
         return c;
     }
 
-    public  int re_user(String a,String b,String c,String d,String e,String f,String g,int aggree  )throws SQLException
+    public  int re_user(String a,String b,String c,String d,String e,String g,int aggree  )throws SQLException
     {
         String sql="select * from user;";
         //Statement statement=connection.createStatement();
@@ -71,13 +71,13 @@ public class UserUtils extends MysqlUtils{
         {
           //  Statement statement1=con.createStatement();
           //  sql="insert into user values("+"'"+a+"'"+","+"'"+b+"'"+","+"'"+d+"'"+","+"'"+e+"'"+","+"'"+f+"'"+","+"'"+g+"'"+")";
-            sql="insert into user values(?,?,?,?,?,?)";
+            sql="insert into user values(?,?,?,?,?,'','')";
             List<Object> params=new ArrayList<>();
             params.add(a);
             params.add(b);
             params.add(d);
             params.add(e);
-            params.add(f);
+          //  params.add(f);
             params.add(g);
             this.updateByPreparedStatement(sql,params);
 
@@ -157,7 +157,7 @@ public class UserUtils extends MysqlUtils{
         return c;
     }
 
-
+//选择全部用户
     public List<Map<String,Object>> SelectAllUser()
     {
         String sql="SELECT * FROM airlineticket.user";
@@ -172,8 +172,22 @@ public class UserUtils extends MysqlUtils{
         return list;
     }
 
+    public List<Map<String,Object>> Select_User_By_Account(List<Object> paras)
+    {
+        String sql=" SELECT * FROM airlineticket.user where user=?";
+        List< Map<String,Object> >  list = new ArrayList<  Map<String,Object>>();
+        try{
+            list=this.findModeResult(sql, paras);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  list;
 
-    //模糊查询航班  attribute属性 paras为参数
+    }
+
+
+    //模糊查询用户  attribute属性 paras为参数
     public List<Map<String,Object>> Select_Where_A_like_B(String attribute,List<Object> paras)
     {            // like '%?%'
         String sql="SELECT * FROM airlineticket.user where "+attribute+" like ?";
@@ -187,7 +201,7 @@ public class UserUtils extends MysqlUtils{
         return  list;
     }
 
-    /*  删除一个航班 通过ID */
+    /*  删除一个用户 通过ID */
     public boolean DeleteUserById(List<Object>params)
     {
         String sql="DELETE FROM `airlineticket`.`user` WHERE `sfz`=?";
@@ -204,7 +218,7 @@ public class UserUtils extends MysqlUtils{
 
 
 
-    /* 更新航班信息通过ID*/
+    /* 更新用户信息通过ID*/
     public boolean UpDate_A_By_ID (String attr ,List <Object> params)
     {
 
@@ -220,6 +234,19 @@ public class UserUtils extends MysqlUtils{
         }
     }
 
+    public boolean UpDate_A_By_Account (String attr ,List <Object> params)
+    {
+
+        String sql="UPDATE `airlineticket`.`user` SET "+ attr +"= ? WHERE `user`=?";
+        try {
+            this.updateByPreparedStatement(sql, params);
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 

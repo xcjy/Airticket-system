@@ -19,10 +19,10 @@ public class findpassW {
     PasswordField fid2 ;
     PasswordField fid3 ;
     Text fid6;
+    Stage finfpwStage2=new Stage();
 
     public findpassW()
     {
-        Stage finfpwStage2=new Stage();
         try{
             root2 = FXMLLoader.load(getClass().getResource("../fxml/fpw.fxml"));
         }
@@ -56,7 +56,13 @@ public class findpassW {
                 switch (m_fp.changepw(fid1.getText(),fid2.getText(),fid3.getText(),fid4.getText())){
                     case 0:
                        // System.out.print("0");
-                        fid6.setText("修改成功");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle(" ");
+                        alert.setHeaderText("");
+                        alert.setContentText("找回密码成功");
+
+                        alert.showAndWait();
+                        finfpwStage2.hide();
                         //修改成功
                         break;
                     case 1:

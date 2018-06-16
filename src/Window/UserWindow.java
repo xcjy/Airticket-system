@@ -6,9 +6,11 @@ import Entity.Passenger;
 import Utils.FlightUtils;
 import Utils.OrderUtils;
 import Utils.PassengerUtils;
+import Utils.UserUtils;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -35,10 +37,19 @@ public class UserWindow {
      private FlightUtils flightUtils;
      private PassengerUtils passengerUtils;
      private OrderUtils orderUtils;
-
+     private UserUtils userUtils;
 
      private Button button_logout;
      private Button button_searchflight;
+     private Button button_saveinfo;
+     private Button button_ModifyPsw;
+
+     private TextField name;
+    private TextField phone;
+    private TextField email;
+    private PasswordField OriginPwd;
+    private PasswordField NowPwd;
+
 
      private ComboBox<String> start;
      private ComboBox<String> end;
@@ -47,12 +58,11 @@ public class UserWindow {
      private TableView FlightTable;
      private TableView PsgTable;
      private TableView OrderTable;
-     private TextField PsgName;
-     private TextField Psgid;
+
 
      private ObservableList<Flight> FlightObList=FXCollections.observableArrayList();;
-     private ObservableList<Passenger> PsgObList;
-     private ObservableList<Order> OrderObList;
+     private ObservableList<Passenger> PsgObList=FXCollections.observableArrayList();;
+     private ObservableList<Order> OrderObList=FXCollections.observableArrayList();
 
 
      private MenuItem bookflight=new MenuItem("订票");
@@ -60,6 +70,7 @@ public class UserWindow {
     private MenuItem deleltepsg=new MenuItem("删除乘机人");
     private MenuItem deleteorder=new MenuItem("退订");
 
+    /*  构造函数*/
     public UserWindow(String user){
         useraccount=user;
 
@@ -79,6 +90,7 @@ public class UserWindow {
         flightUtils=new FlightUtils();
         passengerUtils=new PassengerUtils();
         orderUtils=new OrderUtils();
+        userUtils=new UserUtils();
 
         InitFlightControl();
         Flight_Buttonevent();
@@ -88,6 +100,9 @@ public class UserWindow {
 
         InitOrderControl();
         Order_Buttonevent();
+
+        InitUserInfo();
+        User_Buttonevent();
     }
 
     void InitFlightControl(){
@@ -122,40 +137,43 @@ public class UserWindow {
             //绑定
             flight_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Flight,String>(flightpara[i])); //与Flight中的属性关联
         }
+        List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
 
-        RefreshFlightTable();
+        RefreshFlightTable(selectedlist);
         FlightTable.setItems(FlightObList);
 
     }
 
-    void RefreshFlightTable(){
+    void RefreshFlightTable( List<Map<String,Object>> selectedlist){
         FlightObList.clear();
-        List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
         for (int i = 0; i < selectedlist.size(); i++) {
-            Flight tmp = new Flight();
-            tmp.setId(selectedlist.get(i).get("f_id").toString());
-            tmp.setCom(selectedlist.get(i).get("f_com").toString());
-            tmp.setEtime(     CutPoint0(  selectedlist.get(i).get("f_etime").toString()) );
-            tmp.setStime(CutPoint0(selectedlist.get(i).get("f_stime").toString()));
-            tmp.setModel(   selectedlist.get(i).get("f_model").toString());
-            tmp.setStart(selectedlist.get(i).get("f_start").toString());
-            tmp.setDist(selectedlist.get(i).get("f_dist").toString());
-            tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
-            tmp.setLeft(Integer.parseInt(selectedlist.get(i).get("f_left").toString()));
-            FlightObList.add(tmp);
+            //剩余票数大于0 才添加进来
+            if((Integer)selectedlist.get(i).get("f_left")>0) {
+                Flight tmp = new Flight();
+                tmp.setId(selectedlist.get(i).get("f_id").toString());
+                tmp.setCom(selectedlist.get(i).get("f_com").toString());
+                tmp.setEtime(CutPoint0(selectedlist.get(i).get("f_etime").toString()));
+                tmp.setStime(CutPoint0(selectedlist.get(i).get("f_stime").toString()));
+                tmp.setModel(selectedlist.get(i).get("f_model").toString());
+                tmp.setStart(selectedlist.get(i).get("f_start").toString());
+                tmp.setDist(selectedlist.get(i).get("f_dist").toString());
+                tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
+                tmp.setLeft(Integer.parseInt(selectedlist.get(i).get("f_left").toString()));
+                FlightObList.add(tmp);
+            }
         }
 
     }
 
   void InitPassengerControl(){
       PsgTable=(TableView) root.lookup("#passenger_table");
-      PsgName=(TextField)root.lookup("#text_psgname");
-      Psgid=(TextField)root.lookup("#text_psgid");
+
+
       ContextMenu cm_psgtable=new ContextMenu();
       cm_psgtable.getItems().add(addpsg);
       cm_psgtable.getItems().add(deleltepsg);
       PsgTable.setContextMenu(cm_psgtable);
-      PsgObList=FXCollections.observableArrayList();
+
 
 
       String[] psgpara=new String[] {"name","id"};
@@ -163,15 +181,45 @@ public class UserWindow {
       ObservableList<TableColumn> psg_observableList=PsgTable.getColumns();
 
           //绑定
-          psg_observableList.get(0).setCellValueFactory(new PropertyValueFactory<Passenger,String>(psgpara[0])); //与Flight中的属性关联
-           psg_observableList.get(1).setCellValueFactory(new PropertyValueFactory<Passenger,String>(psgpara[1])); //与Flight中的属性关联
+      for(int i=0;i<psg_observableList.size();i++) {
+          psg_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Passenger, String>(psgpara[i])); //与Flight中的属性关联
+          psg_observableList.get(i).setCellFactory(TextFieldTableCell.<Passenger>forTableColumn());  // 设置成表格可编辑
+      }
+
+      psg_observableList.get(0).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+          @Override
+          public void handle(TableColumn.CellEditEvent event) {
+              // 界面修改乘机人信息
+              String a_value=event.getNewValue().toString();  //获取文本框修改的值
+              List<Object> paras=new ArrayList<Object>();      //传参
+              paras.add(a_value);
+              paras.add( ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).getId()); //获取乘机人id
+
+              if( passengerUtils.UpDate_A_By_ID("name",paras) ){
+                  ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).setName(event.getNewValue().toString());
+              }
+          }
+      });
+
+      psg_observableList.get(1).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+          @Override
+          public void handle(TableColumn.CellEditEvent event) {
+              // 界面修改乘机人信息
+              String a_value=event.getNewValue().toString();  //获取文本框修改的值
+              List<Object> paras=new ArrayList<Object>();      //传参
+              paras.add(a_value);
+              paras.add( ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).getId()); //获取乘机人id
+
+              if( passengerUtils.UpDate_A_By_ID("id",paras) ){
+                  ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).setId(event.getNewValue().toString());
+              }
+          }
+      });
 
 
       List<Map<String,Object>> selectedlist=passengerUtils.SelectAllPsg(useraccount);
 
 
-
-      System.out.println(selectedlist);
       for(int i=0;i<selectedlist.size();i++){
           Passenger tmp=new Passenger();
           tmp.setId(selectedlist.get(i).get("id").toString());
@@ -204,22 +252,12 @@ public class UserWindow {
         params.add(end_p);
         params.add(f_time);
 
+
+
        List<Map<String,Object>> selectedlist=flightUtils.Select_Flight_By_start_end_ftime(params);
-          //List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
-          FlightObList.clear();
-          for (int i = 0; i < selectedlist.size(); i++) {
-              Flight tmp = new Flight();
-              tmp.setId(selectedlist.get(i).get("f_id").toString());
-              tmp.setCom(selectedlist.get(i).get("f_com").toString());
-              tmp.setEtime(     CutPoint0(  selectedlist.get(i).get("f_etime").toString()) );
-              tmp.setStime(CutPoint0(selectedlist.get(i).get("f_stime").toString()));
-              tmp.setModel(   selectedlist.get(i).get("f_model").toString());
-              tmp.setStart(selectedlist.get(i).get("f_start").toString());
-              tmp.setDist(selectedlist.get(i).get("f_dist").toString());
-              tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
-              tmp.setLeft(Integer.parseInt(selectedlist.get(i).get("f_left").toString()));
-              FlightObList.add(tmp);
-          }
+
+       RefreshFlightTable(selectedlist);
+
       });
 
       bookflight.setOnAction(event -> {
@@ -252,14 +290,18 @@ public class UserWindow {
           orderUtils.InsertOrder(params);
 
           //更新航班剩余票数
+
           List<Object> params2=new ArrayList<Object>();
           params2.add(selectedflight.getLeft()-1);
           params2.add(selectedflight.getId());
          if(  flightUtils.UpDate_A_By_ID("f_left",params2) ){
              selectedflight.setLeft(selectedflight.getLeft()-1);
          }
+              List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
+              RefreshFlightTable(selectedlist);
 
          /*   刷新我的订单列表*/
+
                   Order tmp=new Order();
                   tmp.setOrderid(orderid);
                   tmp.setP_name(selectedpsg.getName());
@@ -273,7 +315,12 @@ public class UserWindow {
                   tmp.setF_end(selectedflight.getDist());
                   tmp.setF_price( String.valueOf( selectedflight.getPrice() ) );
                   OrderObList.add(tmp);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle(" ");
+              alert.setHeaderText("");
+              alert.setContentText("订票成功,请到我的订单查看详情");
 
+              alert.showAndWait();
 
       }
 
@@ -285,7 +332,7 @@ public class UserWindow {
 
   void InitOrderControl(){
         OrderTable=(TableView)root.lookup("#OrderTable");
-        OrderObList=FXCollections.observableArrayList();
+
       ContextMenu cm_ordertable=new ContextMenu();
       cm_ordertable.getItems().add(deleteorder);
       OrderTable.setContextMenu(cm_ordertable);
@@ -350,12 +397,19 @@ public class UserWindow {
        params2.add(left+1);
        params2.add(selected.getF_id());
 
-       System.out.println(left+1);
-       System.out.println(selected.getF_id());
+
 
        flightUtils.UpDate_A_By_ID("f_left",params2);
-        RefreshFlightTable();
+       List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
 
+       RefreshFlightTable(selectedlist);
+
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       alert.setTitle(" ");
+       alert.setHeaderText("");
+       alert.setContentText("退订成功");
+
+       alert.showAndWait();
 
 
 
@@ -363,8 +417,10 @@ public class UserWindow {
   }
 
   void PSG_Buttonevent(){
+
         addpsg.setOnAction(event -> {
-            Dialog<Pair> dialog = new Dialog<>();
+            //自定义Dialog
+            Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("添加乘机人信息");
             dialog.setHeaderText("请填写乘机人信息");
 
@@ -379,39 +435,134 @@ public class UserWindow {
 
             TextField name = new TextField();
             name.setPromptText("姓名");
-            TextField password = new TextField();
-            password.setPromptText("身份证");
+            TextField pid = new TextField();
+            pid.setPromptText("身份证");
+
+
 
             grid.add(new Label("乘机人姓名:"), 0, 0);
             grid.add(name, 1, 0);
             grid.add(new Label("乘机人身份证:"), 0, 1);
-            grid.add(password, 1, 1);
+            grid.add(pid, 1, 1);
+
 
             dialog.getDialogPane().setContent(grid);
 
-// 默认光标在用户名上
+// 默认光标在上
             Platform.runLater(() -> name.requestFocus());
 
-// 登录按钮后，将结果转为username-password-pair
+            Optional<ButtonType> result = dialog.showAndWait();
 
-          System.out.println( loginButtonType   );
-            dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == loginButtonType) {
-                    System.out.println(name.getText());
-                    System.out.println(password.getText());
-                    return new Pair<>(name.getText(), password.getText());
-                }
-                return null;
-            });
+            //如果是确认键
+            if (      result.get().getButtonData()==ButtonBar.ButtonData.OK_DONE)
+            {
+                List<Object> params = new ArrayList<Object>();
+                params.add(pid.getText());
+                params.add(name.getText());
+                params.add(useraccount);
 
+                passengerUtils.InsertPsg(params);
 
-             dialog.showAndWait();
-
+                Passenger tmp=new Passenger();
+                tmp.setId(pid.getText());
+                tmp.setName(name.getText());
+                PsgObList.add(tmp);
+            }
 
 
 
 
         });
+
+        deleltepsg.setOnAction(event -> {
+            Passenger selected = (Passenger) PsgTable.getSelectionModel().getSelectedItem();
+         List<Object> params=new ArrayList<Object>();
+           params.add(selected.getId());
+            if(passengerUtils.DeletePsgById(params)){
+                PsgObList.remove(selected);
+            }
+
+        });
+  }
+
+  void InitUserInfo(){
+      button_saveinfo =(Button)root.lookup("#Button_SaveInfo");
+      button_ModifyPsw=(Button)root.lookup("#ModifyPwd");
+      name=(TextField)root.lookup("#textfield_name");
+      phone=(TextField)root.lookup("#textfield_phone");
+      email=(TextField)root.lookup("#textfield_email");
+      OriginPwd=(PasswordField)root.lookup("#OriginPwd");
+      NowPwd=(PasswordField)root.lookup("#NewPwd");
+
+
+      List<Object> paras = new ArrayList<Object>();
+      paras.add(useraccount);
+
+      List<Map<String, Object>> selectedlist= userUtils.Select_User_By_Account(paras);
+      name.setText(selectedlist.get(0).get("name").toString());
+      phone.setText(selectedlist.get(0).get("phone").toString());
+      email.setText(selectedlist.get(0).get("email").toString());
+
+  }
+
+  void User_Buttonevent(){
+    button_saveinfo.setOnAction(event -> {
+     //   String sql="UPDATE `airlineticket`.`user` SET "+ attr +"= ? WHERE `user`=?";
+        List<Object> paras = new ArrayList<Object>();
+        paras.add(name.getText());
+        paras.add(useraccount);
+        userUtils.UpDate_A_By_Account("name",paras);
+        paras.clear();
+
+        paras.add(phone.getText());
+        paras.add(useraccount);
+        userUtils.UpDate_A_By_Account("phone",paras);
+
+        paras.clear();
+        paras.add(email.getText());
+        paras.add(useraccount);
+        userUtils.UpDate_A_By_Account("email",paras);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(" ");
+        alert.setHeaderText("");
+        alert.setContentText("保存信息成功");
+
+        alert.showAndWait();
+    });
+
+
+    button_ModifyPsw.setOnAction(event -> {
+        List<Object> paras = new ArrayList<Object>();
+        paras.add(useraccount);
+        List<Map<String, Object>> selectedlist= userUtils.Select_User_By_Account(paras);
+
+        // 验证原密码
+        String passwd=selectedlist.get(0).get("pass").toString();
+        if(  passwd.equals(OriginPwd.getText() )){
+            paras.clear();
+            paras.add(NowPwd.getText());
+            paras.add(useraccount);
+           userUtils.UpDate_A_By_Account("pass",paras);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(" ");
+            alert.setHeaderText("");
+            alert.setContentText("修改密码成功");
+
+            alert.showAndWait();
+       }
+       else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+           alert.setTitle("");
+            alert.setHeaderText("");
+            alert.setContentText("原密码错误");
+
+            alert.showAndWait();
+        }
+    });
+
+
+
   }
 
   /*   改变datePicker的格式 */

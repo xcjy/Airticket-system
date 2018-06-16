@@ -6,25 +6,25 @@ import Entity.User;
 import Utils.FlightUtils;
 import Utils.OrderUtils;
 import Utils.UserUtils;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ManagerWindow {
 
@@ -163,21 +163,7 @@ public class ManagerWindow {
 
         List<Map<String,Object>> list =flightUtils.SelectAllFlight();
 
-        for(int i=0;i<list.size();i++)
-        {
-            Flight tmp=new Flight();
-
-            tmp.setId(list.get(i).get("f_id").toString());
-            tmp.setCom(list.get(i).get("f_com").toString());
-            tmp.setEtime(  CutPoint0(list.get(i).get("f_etime").toString()));  //去掉.0  时间转换为字符串
-            tmp.setStime(CutPoint0(list.get(i).get("f_stime").toString()));
-            tmp.setModel(list.get(i).get("f_model").toString());
-            tmp.setStart(list.get(i).get("f_start").toString());
-            tmp.setDist(list.get(i).get("f_dist").toString());
-            tmp.setPrice(  Float.parseFloat( list.get(i).get("f_price").toString()));
-            tmp.setLeft(Integer.parseInt(list.get(i).get("f_left").toString()));
-            FlightObList.add(tmp);
-        }
+       RefreshFlightTable(list);
        FlightTable.setItems(FlightObList);
     }
 
@@ -201,7 +187,7 @@ public class ManagerWindow {
        UserTable.setContextMenu(cm_usertable);
 
         /*绑定User  与 observablelist*/
-        String[] userpara=new String[] {"user","password","name","sex","identity"};
+        String[] userpara=new String[] {"user","password","name","sex","identity","phone","email"};
 
         ObservableList<TableColumn> user_observableList=UserTable.getColumns();
 
@@ -225,7 +211,8 @@ public class ManagerWindow {
             tmpuser.setPassword(selectuserlist.get(i).get("pass").toString());
             tmpuser.setSex(selectuserlist.get(i).get("sex").toString());
             tmpuser.setName(selectuserlist.get(i).get("name").toString());
-
+            tmpuser.setPhone(selectuserlist.get(i).get("phone").toString());
+            tmpuser.setEmail(selectuserlist.get(i).get("email").toString());
             UserObList.add(tmpuser);
         }
       UserTable.setItems(UserObList);
@@ -271,22 +258,7 @@ public class ManagerWindow {
 
         List<Map<String,Object>> list =orderUtils.SelectAllOrder();
 
-        for(int i=0;i<list.size();i++)
-        {
-            Order tmp=new Order();
-            tmp.setOrderid(list.get(i).get("orderid").toString());
-            tmp.setP_name(list.get(i).get("p_name").toString());
-            tmp.setP_id(list.get(i).get("p_id").toString());
-            tmp.setF_id(list.get(i).get("f_id").toString());
-            tmp.setF_com(list.get(i).get("f_com").toString());
-            tmp.setF_model(list.get(i).get("f_model").toString());
-            tmp.setF_stime(CutPoint0(list.get(i).get("f_stime").toString()));
-            tmp.setF_etime(CutPoint0(list.get(i).get("f_etime").toString()));
-            tmp.setF_start(list.get(i).get("f_start").toString());
-            tmp.setF_end(list.get(i).get("f_end").toString());
-            tmp.setF_price(list.get(i).get("f_price").toString());
-            OrderObList.add(tmp);
-        }
+      RefreshOrderTable(list);
         OrderTable.setItems(OrderObList);
 
 
@@ -493,6 +465,36 @@ public class ManagerWindow {
             }
         });
 
+        user_observableList.get(5).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(a_value);
+                paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                if( userUtils.UpDate_A_By_ID("phone",paras) ){
+                    ((User) UserTable.getSelectionModel().getSelectedItem()).setPhone(event.getNewValue().toString());
+                }
+
+            }
+        });
+
+        user_observableList.get(6).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                String a_value=event.getNewValue().toString();  //获取文本框修改的值
+                List<Object> paras=new ArrayList<Object>();      //传参
+                paras.add(a_value);
+                paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
+
+                if( userUtils.UpDate_A_By_ID("email",paras) ){
+                    ((User) UserTable.getSelectionModel().getSelectedItem()).setEmail(event.getNewValue().toString());
+                }
+
+            }
+        });
+
 
     }
     private void EditOrderTable(ObservableList<TableColumn> Order_observableList)
@@ -690,6 +692,8 @@ public class ManagerWindow {
         userMap.put("用户名","user");
         userMap.put("姓名","name");
         userMap.put("身份证","sfz");
+        userMap.put("电话","phone");
+        userMap.put("电子邮件","email");
     }
 
     private void initOrderComboBox(){
@@ -697,11 +701,50 @@ public class ManagerWindow {
         orderMap.put("订单编号","orderid");
         orderMap.put("身份证","p_id");
         orderMap.put("航班编号","f_id");
-
+        orderMap.put("姓名","p_name");
+        orderMap.put("航空公司","f_com");
+        orderMap.put("起点","f_start");
+        orderMap.put("终点","f_end");
 
 
     }
 
+    void RefreshFlightTable(   List<Map<String,Object>> selectedlist) {
+        FlightObList.clear();
+        for (int i = 0; i < selectedlist.size(); i++) {
+            Flight tmp = new Flight();
+            tmp.setId(selectedlist.get(i).get("f_id").toString());
+            tmp.setCom(selectedlist.get(i).get("f_com").toString());
+            tmp.setEtime(     CutPoint0(  selectedlist.get(i).get("f_etime").toString()) );
+            tmp.setStime(CutPoint0(selectedlist.get(i).get("f_stime").toString()));
+            tmp.setModel(   selectedlist.get(i).get("f_model").toString());
+            tmp.setStart(selectedlist.get(i).get("f_start").toString());
+            tmp.setDist(selectedlist.get(i).get("f_dist").toString());
+            tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
+            tmp.setLeft(Integer.parseInt(selectedlist.get(i).get("f_left").toString()));
+            FlightObList.add(tmp);
+        }
+    }
+
+    void RefreshOrderTable(List<Map<String,Object>> list){
+        OrderObList.clear();
+        for(int i=0;i<list.size();i++)
+        {
+            Order tmp=new Order();
+            tmp.setOrderid(list.get(i).get("orderid").toString());
+            tmp.setP_name(list.get(i).get("p_name").toString());
+            tmp.setP_id(list.get(i).get("p_id").toString());
+            tmp.setF_id(list.get(i).get("f_id").toString());
+            tmp.setF_com(list.get(i).get("f_com").toString());
+            tmp.setF_model(list.get(i).get("f_model").toString());
+            tmp.setF_stime(CutPoint0(list.get(i).get("f_stime").toString()));
+            tmp.setF_etime(CutPoint0(list.get(i).get("f_etime").toString()));
+            tmp.setF_start(list.get(i).get("f_start").toString());
+            tmp.setF_end(list.get(i).get("f_end").toString());
+            tmp.setF_price(list.get(i).get("f_price").toString());
+            OrderObList.add(tmp);
+        }
+    }
 
     private void Flight_Buttonevent() {
 
@@ -710,63 +753,123 @@ public class ManagerWindow {
         button_searchflight.setOnAction(event -> {
             //  获取要检索的属性
             String attribute = flightMap.get(flightParams.getValue());
-           // System.out.println(attribute);
             //获取要检索的关键字
             String keywords = "%" + searchFlightTextfield.getText() + "%";
-            //System.out.println(keywords);
             //传参  执行SQL语句
             List<Object> likeparams = new ArrayList<Object>();
             likeparams.add(keywords);
             List<Map<String, Object>> selectedlist = flightUtils.Select_Where_A_like_B(attribute, likeparams);
-         //   System.out.println(selectedlist);
 
-            FlightObList.clear();
-            for (int i = 0; i < selectedlist.size(); i++) {
-                Flight tmp = new Flight();
-                tmp.setId(selectedlist.get(i).get("f_id").toString());
-                tmp.setCom(selectedlist.get(i).get("f_com").toString());
-                tmp.setEtime(     CutPoint0(  selectedlist.get(i).get("f_etime").toString()) );
-                tmp.setStime(CutPoint0(selectedlist.get(i).get("f_stime").toString()));
-                tmp.setModel(   selectedlist.get(i).get("f_model").toString());
-                tmp.setStart(selectedlist.get(i).get("f_start").toString());
-                tmp.setDist(selectedlist.get(i).get("f_dist").toString());
-                tmp.setPrice(Float.parseFloat(selectedlist.get(i).get("f_price").toString()));
-                tmp.setLeft(Integer.parseInt(selectedlist.get(i).get("f_left").toString()));
-                FlightObList.add(tmp);
-            }
+          RefreshFlightTable(selectedlist);
 
-            // FlightTable.setItems(FlightList);
         });
 
         //添加航班事件
         addflight.setOnAction(event -> {
-            System.out.println(flighttextField.get(0).getText());
-            Flight tmp = new Flight();
-            tmp.setId(flighttextField.get(0).getText());
-            tmp.setCom(flighttextField.get(1).getText());
-            tmp.setModel(flighttextField.get(2).getText());
-            tmp.setStime(flighttextField.get(3).getText());
-            tmp.setEtime(flighttextField.get(4).getText());
-            tmp.setStart(flighttextField.get(5).getText());
-            tmp.setDist(flighttextField.get(6).getText());
-            tmp.setPrice(Float.parseFloat(flighttextField.get(7).getText()));
-            tmp.setLeft(Integer.parseInt(flighttextField.get(8).getText()));
 
-            List<Object> paras = new ArrayList<Object>();
-            paras.add(tmp.getId());
-            paras.add(tmp.getCom());
-            paras.add(tmp.getModel());
-            paras.add(tmp.getStime());
-            paras.add(tmp.getEtime());
-            paras.add(tmp.getStart());
-            paras.add(tmp.getDist());
-            paras.add(tmp.getPrice());
-            paras.add(tmp.getLeft());
-            //若数据库添加成功 则显示到列表
-            if (flightUtils.InsertFlight(paras)) {
-                FlightObList.add(tmp);
+            //自定义Dialog
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("添加航班");
+            dialog.setHeaderText("请填写航班信息");
+
+
+            ButtonType loginButtonType = new ButtonType("确认", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 70, 10, 10));
+
+            TextField f_id = new TextField();
+            f_id.setPromptText("航班编号");
+            TextField f_com = new TextField();
+            f_com.setPromptText("航空公司");
+
+            TextField f_model = new TextField();
+            f_model.setPromptText("机型");
+
+            TextField f_stime = new TextField();
+            f_stime.setPromptText("起飞时间");
+
+            TextField f_etime = new TextField();
+            f_etime.setPromptText("到达时间");
+
+            TextField f_start = new TextField();
+            f_start.setPromptText("起点");
+
+            TextField f_dist = new TextField();
+            f_dist.setPromptText("终点");
+
+            TextField f_price = new TextField();
+            f_price.setPromptText("价格");
+
+            TextField f_left = new TextField();
+            f_left.setPromptText("票数");
+
+            grid.add(new Label("航班编号:"), 0, 0);
+            grid.add(f_id, 1, 0);
+            grid.add(new Label("航空公司:"), 0, 1);
+            grid.add(f_com, 1, 1);
+            grid.add(new Label("机型:"), 0, 2);
+            grid.add(f_model, 1, 2);
+            grid.add(new Label("起飞时间:"), 0, 3);
+            grid.add(f_stime, 1, 3);
+            grid.add(new Label("到达时间:"), 0, 4);
+            grid.add(f_etime, 1, 4);
+
+            grid.add(new Label("起点:"), 0, 5);
+            grid.add(f_start, 1, 5);
+
+            grid.add(new Label("终点:"), 0, 6);
+            grid.add(f_dist, 1, 6);
+
+            grid.add(new Label("价格:"), 0, 7);
+            grid.add(f_price, 1, 7);
+
+            grid.add(new Label("票数:"), 0, 8);
+            grid.add(f_left, 1, 8);
+
+
+
+
+            dialog.getDialogPane().setContent(grid);
+
+// 默认光标在上
+            Platform.runLater(() -> f_id.requestFocus());
+
+            Optional<ButtonType> result = dialog.showAndWait();
+
+
+            //如果是确认键
+            if (      result.get().getButtonData()==ButtonBar.ButtonData.OK_DONE)
+            {
+                Flight tmp = new Flight();
+                tmp.setId(f_id.getText());
+                tmp.setCom(f_com.getText());
+                tmp.setModel(f_model.getText());
+                tmp.setStime(f_stime.getText());
+                tmp.setEtime(f_etime.getText());
+                tmp.setStart(f_start.getText());
+                tmp.setDist(f_dist.getText());
+                tmp.setPrice( Float.parseFloat(  f_price.getText()));
+                tmp.setLeft(Integer.parseInt(f_left.getText()));
+
+                List<Object> paras = new ArrayList<Object>();
+                paras.add(tmp.getId());
+                paras.add(tmp.getCom());
+                paras.add(tmp.getModel());
+                paras.add(tmp.getStime());
+                paras.add(tmp.getEtime());
+                paras.add(tmp.getStart());
+                paras.add(tmp.getDist());
+                paras.add(tmp.getPrice());
+                paras.add(tmp.getLeft());
+                //若数据库添加成功 则显示到列表
+                if (flightUtils.InsertFlight(paras)) {
+                    FlightObList.add(tmp);
+                }
             }
-
 
         });
 
@@ -812,8 +915,10 @@ public class ManagerWindow {
                tmp.setUser(selectedlist.get(i).get("user").toString());
                tmp.setPassword(selectedlist.get(i).get("pass").toString());
                tmp.setName(selectedlist.get(i).get("name").toString());
-               tmp.setSex(selectedlist.get(i).get("old").toString());
+               tmp.setSex(selectedlist.get(i).get("sex").toString());
                tmp.setIdentity(selectedlist.get(i).get("sfz").toString());
+               tmp.setPhone(selectedlist.get(i).get("phone").toString());
+               tmp.setEmail(selectedlist.get(i).get("email").toString());
                UserObList.add(tmp);
            }
 
@@ -845,31 +950,13 @@ public class ManagerWindow {
 
             //  获取要检索的属性
             String attribute=orderMap.get(orderparams.getValue());
-            System.out.println(attribute);
             //获取要检索的关键字
             String keywords = "%" + searchOrderTextfield.getText() + "%";
-            System.out.println(keywords);
             //传参  执行SQL语句
             List<Object> likeparams = new ArrayList<Object>();
             likeparams.add(keywords);
             List<Map<String, Object>> list = orderUtils.Select_Where_A_like_B(attribute,likeparams);
-            System.out.println(list);
-            OrderObList.clear();
-            for (int i = 0; i < list.size(); i++) {
-                Order tmp =new Order();
-                tmp.setOrderid(list.get(i).get("orderid").toString());
-                tmp.setP_name(list.get(i).get("p_name").toString());
-                tmp.setP_id(list.get(i).get("p_id").toString());
-                tmp.setF_id(list.get(i).get("f_id").toString());
-                tmp.setF_com(list.get(i).get("f_com").toString());
-                tmp.setF_model(list.get(i).get("f_model").toString());
-                tmp.setF_stime(CutPoint0(list.get(i).get("f_stime").toString()));
-                tmp.setF_etime(CutPoint0(list.get(i).get("f_etime").toString()));
-                tmp.setF_start(list.get(i).get("f_start").toString());
-                tmp.setF_end(list.get(i).get("f_end").toString());
-                tmp.setF_price(list.get(i).get("f_price").toString());
-                OrderObList.add(tmp);
-            }
+           RefreshOrderTable(list);
 
 
 

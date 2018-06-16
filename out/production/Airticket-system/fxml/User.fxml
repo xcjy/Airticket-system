@@ -3,10 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -69,7 +72,21 @@
           </Tab>
             <Tab text="个人信息管理">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="100.0" layoutY="31.0" prefHeight="43.0" prefWidth="110.0" text="联系人姓名" />
+                        <TextField fx:id="textfield_name" layoutX="199.0" layoutY="38.0" />
+                        <Label layoutX="69.0" layoutY="89.0" prefHeight="43.0" prefWidth="110.0" text="手机号码(选填)" />
+                        <TextField fx:id="textfield_phone" layoutX="199.0" layoutY="95.0" />
+                        <Label layoutX="89.0" layoutY="142.0" prefHeight="40.0" prefWidth="96.0" text="Email(选填)" />
+                        <TextField fx:id="textfield_email" layoutX="199.0" layoutY="148.0" />
+                        <Button fx:id="Button_SaveInfo" layoutX="339.0" layoutY="192.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="54.0" text="保存" />
+                        <Label layoutX="577.0" layoutY="32.0" prefHeight="39.0" prefWidth="88.0" text="原密码" />
+                        <Label layoutX="577.0" layoutY="91.0" prefHeight="39.0" prefWidth="88.0" text="新密码" />
+                        <Button fx:id="ModifyPwd" layoutX="767.0" layoutY="148.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="80.0" text="修改密码" />
+                        <PasswordField fx:id="OriginPwd" layoutX="645.0" layoutY="38.0" prefHeight="0.0" prefWidth="202.0" />
+                        <PasswordField fx:id="NewPwd" layoutX="645.0" layoutY="96.0" prefHeight="23.0" prefWidth="201.0" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

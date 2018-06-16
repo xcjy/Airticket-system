@@ -30,7 +30,7 @@ public class LoginWindow extends Application
         grid.setVgap((10));
         grid.setPadding(new Insets(25,25,25,25));
 
-        Text scenetitle =new Text("Welcome");
+        Text scenetitle =new Text("机票预订系统");
         scenetitle.setFont(Font.font("Tahoma",FontWeight.NORMAL,20));
         grid.add(scenetitle,0,0,2,1);
 
@@ -110,7 +110,7 @@ public class LoginWindow extends Application
                                 //登陆成功
                                 UserWindow userWindow=new UserWindow(userTextField.getText());
                                 primaryStage.hide();
-                                System.out.println("登陆成功");
+                               // System.out.println("登陆成功");
                                 break;
                         }
                     } catch (Exception e) {
@@ -120,6 +120,7 @@ public class LoginWindow extends Application
             }
         });
 
+        //注册
         bt1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -128,7 +129,7 @@ public class LoginWindow extends Application
 
             }
         });
-
+        //忘记1
         bt2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

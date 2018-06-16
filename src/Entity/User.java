@@ -9,6 +9,34 @@ public class User {
     private SimpleStringProperty name=new SimpleStringProperty();
     private SimpleStringProperty sex=new SimpleStringProperty();
     private SimpleStringProperty identity=new SimpleStringProperty();
+    private SimpleStringProperty phone=new SimpleStringProperty();
+    private  SimpleStringProperty email=new SimpleStringProperty();
+
+    public String getPhone() {
+        return phone.get();
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone.set(phone);
+    }
+
+    public String getEmail() {
+        return email.get();
+    }
+
+    public SimpleStringProperty emailProperty() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+
 
     public String getUser() {
         return user.get();

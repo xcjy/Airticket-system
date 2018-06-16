@@ -33,19 +33,7 @@
                               <TableColumn prefWidth="65.0" text="票数" />
                           </columns>
                         </TableView>
-                        <HBox layoutX="16.0" layoutY="537.0" prefHeight="38.0" prefWidth="890.0">
-                           <children>
-                              <TextField fx:id="flightTextfield_0" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_1" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_2" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_3" prefHeight="24.0" prefWidth="150.0" />
-                              <TextField fx:id="flightTextfield_4" prefHeight="24.0" prefWidth="150.0" />
-                              <TextField fx:id="flightTextfield_5" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_6" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_7" prefHeight="24.0" prefWidth="75.0" />
-                              <TextField fx:id="flightTextfield_8" prefHeight="24.0" prefWidth="71.0" />
-                           </children>
-                        </HBox>
+                        <HBox layoutX="16.0" layoutY="537.0" prefHeight="38.0" prefWidth="890.0" />
                         <Button fx:id="button_searchflight" layoutX="701.0" layoutY="13.0" mnemonicParsing="false" text="搜索航班" />
                         <Label layoutX="41.0" layoutY="18.0" text="属性" />
                         <ComboBox fx:id="flightparams" layoutX="86.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
@@ -58,13 +46,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="UserTable" editable="true" layoutX="64.0" layoutY="94.0" prefHeight="290.0" prefWidth="533.0">
+                        <TableView fx:id="UserTable" editable="true" layoutX="64.0" layoutY="94.0" prefHeight="383.0" prefWidth="859.0">
                           <columns>
                             <TableColumn prefWidth="112.0" text="用户名" />
                             <TableColumn prefWidth="99.0" text="密码" />
                               <TableColumn minWidth="3.0" prefWidth="69.0" text="姓名" />
                               <TableColumn prefWidth="59.0" text="性别" />
                               <TableColumn prefWidth="186.0" text="身份证" />
+                              <TableColumn prefWidth="139.0" text="电话" />
+                              <TableColumn prefWidth="176.0" text="电子邮件" />
                           </columns>
                         </TableView>
                         <Label layoutX="64.0" layoutY="32.0" text="属性" />
@@ -82,13 +72,13 @@
                           <columns>
                             <TableColumn prefWidth="101.0" text="订单编号" />
                             <TableColumn prefWidth="98.0" text="姓名" />
-                              <TableColumn prefWidth="127.0" text="身份证" />
+                              <TableColumn prefWidth="142.0" text="身份证" />
                               <TableColumn prefWidth="79.0" text="航班编号" />
-                              <TableColumn prefWidth="70.0" text="航班公司" />
-                              <TableColumn prefWidth="65.0" text="机型" />
-                              <TableColumn prefWidth="121.0" text="起飞时间" />
-                              <TableColumn prefWidth="129.0" text="到达时间" />
-                              <TableColumn prefWidth="48.0" text="起点" />
+                              <TableColumn prefWidth="67.0" text="航班公司" />
+                              <TableColumn prefWidth="61.0" text="机型" />
+                              <TableColumn prefWidth="119.0" text="起飞时间" />
+                              <TableColumn prefWidth="131.0" text="到达时间" />
+                              <TableColumn prefWidth="40.0" text="起点" />
                               <TableColumn prefWidth="44.0" text="终点" />
                               <TableColumn prefWidth="51.0" text="价格" />
                           </columns>
