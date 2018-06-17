@@ -7,6 +7,7 @@ import Utils.FlightUtils;
 import Utils.OrderUtils;
 import Utils.PassengerUtils;
 import Utils.UserUtils;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Pair;
 import javafx.util.StringConverter;
 
@@ -39,22 +41,29 @@ public class UserWindow {
      private OrderUtils orderUtils;
      private UserUtils userUtils;
 
-     private Button button_logout;
-     private Button button_searchflight;
-     private Button button_saveinfo;
-     private Button button_ModifyPsw;
+     private JFXButton button_logout;
 
-     private TextField name;
-    private TextField phone;
-    private TextField email;
-    private PasswordField OriginPwd;
-    private PasswordField NowPwd;
+    private JFXButton button_searchflight;
+
+    private JFXButton button_saveinfo;
+
+    private JFXButton button_ModifyPsw;
+
+    private JFXTextField name;
+    private JFXTextField phone;
+    private JFXTextField email;
+
+    private JFXPasswordField OriginPwd;
+    private JFXPasswordField NowPwd;
+    private JFXPasswordField ConfirmPwd;
 
 
-     private ComboBox<String> start;
-     private ComboBox<String> end;
 
-     private DatePicker datePicker;
+     private JFXComboBox<String >start;
+    private JFXComboBox<String >end;
+
+
+     private JFXDatePicker datePicker;
      private TableView FlightTable;
      private TableView PsgTable;
      private TableView OrderTable;
@@ -81,9 +90,10 @@ public class UserWindow {
             e.printStackTrace();
         }
 
-        Scene scene=new Scene(root,1024,768);
-        UserStage.setTitle("Hello,"+user);
+        Scene scene=new Scene(root,1048,768);
+        UserStage.setTitle("欢迎,"+user);
         UserStage.setScene(scene);
+        UserStage.initStyle(StageStyle.UTILITY);
         UserStage.show();
 
         /* 连接数据库*/
@@ -106,13 +116,13 @@ public class UserWindow {
     }
 
     void InitFlightControl(){
-        button_logout =(Button)root.lookup("#button_logout");
+        button_logout =(JFXButton) root.lookup("#button_logout");
 
-        button_searchflight=(Button)root.lookup("#button_searchflight");
+        button_searchflight=(JFXButton) root.lookup("#button_searchflight");
 
-        start=( ComboBox<String>)root.lookup("#startparams");
-        end=( ComboBox<String>)root.lookup("#endparams");
-        datePicker =(DatePicker) root.lookup("#datapicker");
+        start=( JFXComboBox<String>)root.lookup("#startparams");
+        end=( JFXComboBox<String>)root.lookup("#endparams");
+        datePicker =(JFXDatePicker) root.lookup("#datapicker");
         FlightTable=(TableView) root.lookup("#flight_table");
         //FlightObList=FXCollections.observableArrayList();
 
@@ -238,7 +248,8 @@ public class UserWindow {
           LoginWindow LW= new LoginWindow();
           Stage s1=new Stage();
           try{
-              LW.start(s1);}
+              LW.start(s1);
+          }
           catch (Exception e){
               e.printStackTrace();
           }
@@ -250,9 +261,13 @@ public class UserWindow {
         String end_p="%"+end.getEditor().getText()+"%";
         String f_time="%"+datePicker.getEditor().getText()+"%";
 
+        System.out.println(start_p);
+        System.out.println(end_p);
+
         //传递参数
         List<Object> params=new ArrayList<Object>();
         params.add(start_p);
+
         params.add(end_p);
         params.add(f_time);
 
@@ -490,14 +505,14 @@ public class UserWindow {
   }
 
   void InitUserInfo(){
-      button_saveinfo =(Button)root.lookup("#Button_SaveInfo");
-      button_ModifyPsw=(Button)root.lookup("#ModifyPwd");
-      name=(TextField)root.lookup("#textfield_name");
-      phone=(TextField)root.lookup("#textfield_phone");
-      email=(TextField)root.lookup("#textfield_email");
-      OriginPwd=(PasswordField)root.lookup("#OriginPwd");
-      NowPwd=(PasswordField)root.lookup("#NewPwd");
-
+      button_saveinfo =(JFXButton) root.lookup("#Button_SaveInfo");
+      button_ModifyPsw=(JFXButton) root.lookup("#ModifyPwd");
+      name=(JFXTextField) root.lookup("#textfield_name");
+      phone=(JFXTextField) root.lookup("#textfield_phone");
+      email=(JFXTextField) root.lookup("#textfield_email");
+      OriginPwd=(JFXPasswordField) root.lookup("#OriginPwd");
+      NowPwd=(JFXPasswordField) root.lookup("#NewPwd");
+      ConfirmPwd=(JFXPasswordField)root.lookup("#ConfirmPwd");
 
       List<Object> paras = new ArrayList<Object>();
       paras.add(useraccount);
@@ -543,17 +558,20 @@ public class UserWindow {
 
         // 验证原密码
         String passwd=selectedlist.get(0).get("pass").toString();
-        if(  passwd.equals(OriginPwd.getText() )){
-            paras.clear();
-            paras.add(NowPwd.getText());
-            paras.add(useraccount);
-           userUtils.UpDate_A_By_Account("pass",paras);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(" ");
-            alert.setHeaderText("");
-            alert.setContentText("修改密码成功");
+        if(  passwd.equals(OriginPwd.getText() ) ){
+            System.out.println(OriginPwd.getText().equals(ConfirmPwd.getText()));
+            if( NowPwd.getText().equals(ConfirmPwd.getText())) {
+                paras.clear();
+                paras.add(NowPwd.getText());
+                paras.add(useraccount);
+                userUtils.UpDate_A_By_Account("pass", paras);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(" ");
+                alert.setHeaderText("");
+                alert.setContentText("修改密码成功");
 
-            alert.showAndWait();
+                alert.showAndWait();
+            }
        }
        else {
             Alert alert = new Alert(Alert.AlertType.WARNING);

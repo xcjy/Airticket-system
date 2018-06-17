@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="662.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTabPane layoutX="14.0" layoutY="7.0" prefHeight="614.0" prefWidth="948.0">
+         <tabs>
+            <Tab text="航班管理">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="956.0">
+                     <children>
+                        <JFXTreeTableView fx:id="FlightTable" layoutX="14.0" layoutY="50.0" prefHeight="415.0" prefWidth="821.0">
+                           <columns>
+                              <TreeTableColumn prefWidth="75.0" text="航班编号" />
+                              <TreeTableColumn prefWidth="75.0" text="航班公司" />
+                              <TreeTableColumn prefWidth="75.0" text="机型" />
+                              <TreeTableColumn prefWidth="153.0" text="起飞时间" />
+                              <TreeTableColumn prefWidth="139.0" text="到达时间" />
+                              <TreeTableColumn prefWidth="78.0" text="起点" />
+                              <TreeTableColumn prefWidth="67.0" text="终点" />
+                              <TreeTableColumn prefWidth="72.0" text="价格" />
+                              <TreeTableColumn prefWidth="83.0" text="票数" />
+                           </columns>
+                        </JFXTreeTableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="用户管理">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="232.0" prefWidth="881.0" />
+              </content>
+            </Tab>
+            <Tab text="订单管理">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+      <JFXButton layoutX="967.0" layoutY="7.0" prefHeight="31.0" prefWidth="58.0" text="注销" />
+   </children>
+</AnchorPane>

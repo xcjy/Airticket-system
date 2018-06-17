@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 
@@ -23,8 +24,11 @@ public class LoginWindow extends Application {
     private JFXButton Button_login;
     private JFXButton Button_regist;
     private JFXButton Button_fpw;
-    private JFXRadioButton ra1;
-    private JFXRadioButton ra2;
+ //   private JFXRadioButton ra1;
+    private JFXToggleButton ra2;
+    private JFXToggleButton ra1;
+
+  //  private JFXRadioButton ra2;
     private JFXTextField userTextField;
     private JFXPasswordField pwBox;
 
@@ -32,8 +36,10 @@ public class LoginWindow extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setTitle("机票预订系统");
+        primaryStage.setScene(new Scene(root, 340, 300));
+        primaryStage.initStyle(StageStyle.UTILITY);
+
         primaryStage.show();
 
         Button_login=(JFXButton) root.lookup("#Button_login");
@@ -41,12 +47,20 @@ public class LoginWindow extends Application {
         Button_fpw=(JFXButton) root.lookup("#Button_fpw");
         userTextField=(JFXTextField)root.lookup("#tf_username");
         pwBox=(JFXPasswordField)root.lookup("#tf_password");
+        ra2=(JFXToggleButton)root.lookup("#user");
+        ra1=(JFXToggleButton)root.lookup("#admin");
 
-        ra2=(JFXRadioButton)root.lookup("#ra_user");     //ra1
+    /*
+       ra2=(JFXRadioButton)root.lookup("#ra_user");     //ra1
         ra1=(JFXRadioButton)root.lookup("#ra_admin");   //ra2
-        ToggleGroup gp = new ToggleGroup();
+       ToggleGroup gp = new ToggleGroup();
         ra1.setToggleGroup(gp);
         ra2.setToggleGroup(gp);
+        ra2.setSelected(true);
+*/
+        ToggleGroup gp = new ToggleGroup();
+        ra2.setToggleGroup(gp);
+        ra1.setToggleGroup(gp);
         ra2.setSelected(true);
 
 

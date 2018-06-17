@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="570.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField fx:id="tf1" layoutX="20.0" layoutY="81.0" prefHeight="30.0" prefWidth="221.0" promptText="用户名" />
+      <JFXTextField fx:id="tf4" layoutX="20.0" layoutY="193.0" prefHeight="30.0" prefWidth="221.0" promptText="姓名" />
+      <JFXTextField fx:id="tf6" layoutX="20.0" layoutY="230.0" prefHeight="30.0" prefWidth="221.0" promptText="身份证号码" />
+      <JFXRadioButton fx:id="rb1" layoutX="27.0" layoutY="275.0" text="男" />
+      <JFXRadioButton fx:id="rb2" layoutX="120.0" layoutY="275.0" text="女" />
+      <JFXButton fx:id="b1" buttonType="RAISED" layoutX="27.0" layoutY="488.0" prefHeight="38.0" prefWidth="230.0" ripplerFill="#3483dd" text="立即注册" textFill="#941d1d" />
+      <Label layoutX="15.0" prefHeight="52.0" prefWidth="212.0" text="注册账号">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <JFXTextArea layoutX="17.0" layoutY="305.0" prefHeight="126.0" prefWidth="271.0" text="本网站用户应遵守《中华人民共和国保密法》、《计算机信息系统国际联网保密管理规定》、《中华人民共和国计算机信息统安全保护条例》、《计算机信息网络际联网安全保护管理办法》、《中华人&#10;民共和国计算机信息网络国际联网管理暂规定》及其实施办法等相关法律法规的何及所有的规定，本站用户自己对以任方式使用服务的任何行为及其结果承担部责任。在任何情况下，如果天下军事理地认您的任何行为，包括但不限于,您的任何言论和其他行为违反或可能违反述法律和法规的任何规定，航趣飞机网可在任何时候不经任事先通知终止向您提供服务。" />
+      <JFXCheckBox fx:id="cb1" layoutX="12.0" layoutY="452.0" text="我已阅读并同意该使用条件及隐私声明" />
+      <JFXPasswordField fx:id="tf2" layoutX="20.0" layoutY="117.0" prefHeight="30.0" prefWidth="221.0" promptText="请输入密码" />
+      <JFXPasswordField fx:id="tf3" layoutX="20.0" layoutY="156.0" prefHeight="30.0" prefWidth="221.0" promptText="请再次输入密码" />
+   </children>
+</AnchorPane>

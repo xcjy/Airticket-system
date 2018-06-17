@@ -1,69 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <TabPane prefHeight="664.0" prefWidth="888.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="729.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <JFXTabPane prefHeight="729.0" prefWidth="1049.0" BorderPane.alignment="CENTER">
+         <tabs>
           <Tab text="机票预订">
                <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="792.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="1050.0">
                      <children>
-                        <DatePicker fx:id="datapicker" layoutX="280.0" layoutY="14.0" />
-                        <TableView fx:id="flight_table" layoutX="14.0" layoutY="57.0" prefHeight="427.0" prefWidth="696.0">
+                        <TableView fx:id="flight_table" layoutX="14.0" layoutY="71.0" prefHeight="427.0" prefWidth="753.0">
                           <columns>
                             <TableColumn prefWidth="68.0" text="航班编号" />
                             <TableColumn prefWidth="71.0" text="航班公司" />
                               <TableColumn prefWidth="71.0" text="机型" />
-                              <TableColumn prefWidth="119.0" text="起飞时间" />
-                              <TableColumn prefWidth="121.0" text="到达时间" />
-                              <TableColumn prefWidth="56.0" text="起点" />
-                              <TableColumn prefWidth="45.0" text="终点" />
-                              <TableColumn prefWidth="71.0" text="价格" />
-                              <TableColumn prefWidth="68.0" text="票数" />
+                              <TableColumn prefWidth="160.0" text="起飞时间" />
+                              <TableColumn prefWidth="143.0" text="到达时间" />
+                              <TableColumn prefWidth="52.0" text="起点" />
+                              <TableColumn prefWidth="49.0" text="终点" />
+                              <TableColumn prefWidth="85.0" text="价格" />
+                              <TableColumn prefWidth="47.0" text="票数" />
                           </columns>
                         </TableView>
-                        <ComboBox fx:id="startparams" editable="true" layoutX="22.0" layoutY="14.0" prefHeight="23.0" prefWidth="99.0" promptText="起点" />
-                        <ComboBox fx:id="endparams" editable="true" layoutX="140.0" layoutY="14.0" prefHeight="23.0" prefWidth="99.0" promptText="终点" />
-                        <Button fx:id="button_searchflight" layoutX="541.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" text="搜索航班" />
-                        <TableView fx:id="passenger_table" editable="true" layoutX="710.0" layoutY="57.0" prefHeight="427.0" prefWidth="257.0">
+                        <TableView fx:id="passenger_table" editable="true" layoutX="767.0" layoutY="71.0" prefHeight="427.0" prefWidth="257.0">
                            <columns>
                               <TableColumn prefWidth="75.0" text="姓名" />
                               <TableColumn prefWidth="172.0" text="身份证" />
                            </columns>
                         </TableView>
+                        <JFXComboBox fx:id="startparams" editable="true" layoutX="28.0" layoutY="21.0" prefHeight="30.0" prefWidth="74.0" promptText="起点" />
+                        <JFXComboBox fx:id="endparams" editable="true" layoutX="136.0" layoutY="21.0" prefHeight="30.0" prefWidth="67.0" promptText="终点" />
+                        <JFXDatePicker fx:id="datapicker" layoutX="247.0" layoutY="21.0" promptText="起飞时间" />
+                        <JFXButton fx:id="button_searchflight" layoutX="508.0" layoutY="21.0" text="搜索航班" />
                      </children>
                   </AnchorPane>
                </content>
           </Tab>
           <Tab text="我的订单">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1099.0">
                      <children>
-                        <TableView fx:id="OrderTable" editable="true" layoutX="19.0" layoutY="30.0" prefHeight="332.0" prefWidth="957.0">
+                        <TableView fx:id="OrderTable" editable="true" layoutX="2.0" layoutY="35.0" prefHeight="332.0" prefWidth="1034.0">
                           <columns>
-                              <TableColumn minWidth="0.0" prefWidth="102.0" text="订单编号" />
-                            <TableColumn prefWidth="75.0" text="姓名" />
-                            <TableColumn prefWidth="146.0" text="身份证" />
-                              <TableColumn prefWidth="66.0" text="航班编号" />
-                              <TableColumn prefWidth="78.0" text="航班公司" />
-                              <TableColumn prefWidth="74.0" text="机型" />
-                              <TableColumn prefWidth="135.0" text="起飞时间" />
-                              <TableColumn prefWidth="109.0" text="到达时间" />
-                              <TableColumn prefWidth="60.0" text="起点" />
-                              <TableColumn prefWidth="49.0" text="终点" />
+                              <TableColumn minWidth="0.0" prefWidth="101.0" text="订单编号" />
+                            <TableColumn prefWidth="58.0" text="姓名" />
+                            <TableColumn prefWidth="168.0" text="身份证" />
+                              <TableColumn prefWidth="70.0" text="航班编号" />
+                              <TableColumn prefWidth="79.0" text="航班公司" />
+                              <TableColumn prefWidth="78.0" text="机型" />
+                              <TableColumn prefWidth="148.0" text="起飞时间" />
+                              <TableColumn prefWidth="142.0" text="到达时间" />
+                              <TableColumn prefWidth="66.0" text="起点" />
+                              <TableColumn prefWidth="62.0" text="终点" />
                               <TableColumn prefWidth="60.0" text="价格" />
                           </columns>
                         </TableView>
@@ -74,25 +75,35 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="100.0" layoutY="31.0" prefHeight="43.0" prefWidth="110.0" text="联系人姓名" />
-                        <TextField fx:id="textfield_name" layoutX="199.0" layoutY="38.0" />
-                        <Label layoutX="69.0" layoutY="89.0" prefHeight="43.0" prefWidth="110.0" text="手机号码(选填)" />
-                        <TextField fx:id="textfield_phone" layoutX="199.0" layoutY="95.0" />
-                        <Label layoutX="89.0" layoutY="142.0" prefHeight="40.0" prefWidth="96.0" text="Email(选填)" />
-                        <TextField fx:id="textfield_email" layoutX="199.0" layoutY="148.0" />
-                        <Button fx:id="Button_SaveInfo" layoutX="339.0" layoutY="192.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="54.0" text="保存" />
-                        <Label layoutX="577.0" layoutY="32.0" prefHeight="39.0" prefWidth="88.0" text="原密码" />
-                        <Label layoutX="577.0" layoutY="91.0" prefHeight="39.0" prefWidth="88.0" text="新密码" />
-                        <Button fx:id="ModifyPwd" layoutX="767.0" layoutY="148.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="80.0" text="修改密码" />
-                        <PasswordField fx:id="OriginPwd" layoutX="645.0" layoutY="38.0" prefHeight="0.0" prefWidth="202.0" />
-                        <PasswordField fx:id="NewPwd" layoutX="645.0" layoutY="96.0" prefHeight="23.0" prefWidth="201.0" />
-                     </children></AnchorPane>
+                        <Label layoutX="69.0" layoutY="32.0" prefHeight="43.0" prefWidth="110.0" text="联系人姓名" />
+                        <Label layoutX="61.0" layoutY="90.0" prefHeight="43.0" prefWidth="110.0" text="手机号码(选填)" />
+                        <Label layoutX="68.0" layoutY="148.0" prefHeight="40.0" prefWidth="96.0" text="Email(选填)" />
+                        <Label layoutX="584.0" layoutY="32.0" prefHeight="39.0" prefWidth="88.0" text="原密码" />
+                        <Label layoutX="584.0" layoutY="93.0" prefHeight="39.0" prefWidth="88.0" text="新密码" />
+                        <JFXTextField fx:id="textfield_name" layoutX="179.0" layoutY="38.0" />
+                        <JFXTextField fx:id="textfield_phone" layoutX="179.0" layoutY="97.0" />
+                        <JFXTextField fx:id="textfield_email" layoutX="179.0" layoutY="153.0" />
+                        <JFXButton fx:id="Button_SaveInfo" layoutX="319.0" layoutY="192.0" text="保存" />
+                        <JFXButton fx:id="ModifyPwd" layoutX="751.0" layoutY="200.0" text="修改密码" />
+                        <JFXPasswordField fx:id="OriginPwd" layoutX="647.0" layoutY="36.0" />
+                        <JFXPasswordField fx:id="NewPwd" layoutX="647.0" layoutY="96.0" />
+                        <JFXPasswordField fx:id="ConfirmPwd" layoutX="647.0" layoutY="153.0" />
+                        <Label layoutX="578.0" layoutY="158.0" text="确认密码" />
+                     </children>
+                  </AnchorPane>
               </content>
             </Tab>
-        </tabs>
-      </TabPane>
-   </center>
-   <top>
-      <Button fx:id="button_logout" mnemonicParsing="false" prefHeight="15.0" prefWidth="62.0" text="注销" BorderPane.alignment="TOP_RIGHT" />
-   </top>
+         </tabs>
+      </JFXTabPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="48.0" prefWidth="29.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="button_logout" layoutX="-1.0" layoutY="-1.0" prefHeight="30.0" prefWidth="68.0" text="注销" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></JFXButton>
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <JFXTabPane prefHeight="751.0" prefWidth="1032.0" BorderPane.alignment="CENTER">
+         <tabs>
           <Tab text="航班管理">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="687.0" prefWidth="998.0">
                      <children>
-                        <TableView fx:id="FlightTable" editable="true" layoutX="16.0" layoutY="69.0" prefHeight="468.0" prefWidth="821.0">
+                        <TableView fx:id="FlightTable" editable="true" layoutX="51.0" layoutY="69.0" prefHeight="468.0" prefWidth="821.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="航班编号" />
                             <TableColumn prefWidth="75.0" text="航班公司" />
@@ -34,19 +34,18 @@
                           </columns>
                         </TableView>
                         <HBox layoutX="16.0" layoutY="537.0" prefHeight="38.0" prefWidth="890.0" />
-                        <Button fx:id="button_searchflight" layoutX="701.0" layoutY="13.0" mnemonicParsing="false" text="搜索航班" />
-                        <Label layoutX="41.0" layoutY="18.0" text="属性" />
-                        <ComboBox fx:id="flightparams" layoutX="86.0" layoutY="13.0" prefHeight="30.0" prefWidth="117.0" />
-                        <TextField fx:id="searchFlightTextfield" layoutX="203.0" layoutY="13.0" prefHeight="30.0" prefWidth="498.0" />
+                        <JFXComboBox fx:id="flightparams" layoutX="51.0" layoutY="28.0" prefHeight="30.0" prefWidth="112.0" />
+                        <JFXTextField fx:id="searchFlightTextfield" layoutX="162.0" layoutY="28.0" prefHeight="30.0" prefWidth="630.0" />
+                        <JFXButton fx:id="button_searchflight" layoutX="792.0" layoutY="28.0" text="搜索航班" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab text="用户管理">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="702.0">
                      <children>
-                        <TableView fx:id="UserTable" editable="true" layoutX="64.0" layoutY="94.0" prefHeight="383.0" prefWidth="859.0">
+                        <TableView fx:id="UserTable" editable="true" layoutX="53.0" layoutY="89.0" prefHeight="383.0" prefWidth="848.0">
                           <columns>
                             <TableColumn prefWidth="112.0" text="用户名" />
                             <TableColumn prefWidth="99.0" text="密码" />
@@ -57,10 +56,9 @@
                               <TableColumn prefWidth="176.0" text="电子邮件" />
                           </columns>
                         </TableView>
-                        <Label layoutX="64.0" layoutY="32.0" text="属性" />
-                        <ComboBox fx:id="userparams" layoutX="102.0" layoutY="27.0" prefWidth="150.0" />
-                        <TextField fx:id="searchUserTextfield" layoutX="252.0" layoutY="27.0" prefHeight="8.0" prefWidth="241.0" />
-                        <Button fx:id="button_searchuser" layoutX="493.0" layoutY="27.0" mnemonicParsing="false" text="搜索用户" />
+                        <JFXComboBox fx:id="userparams" layoutX="53.0" layoutY="31.0" prefHeight="30.0" prefWidth="86.0" />
+                        <JFXTextField fx:id="searchUserTextfield" layoutX="137.0" layoutY="31.0" prefHeight="30.0" prefWidth="686.0" />
+                        <JFXButton fx:id="button_searchuser" layoutX="823.0" layoutY="31.0" text="搜索用户" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -68,32 +66,38 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="OrderTable" editable="true" layoutX="42.0" layoutY="74.0" prefHeight="554.0" prefWidth="934.0">
+                        <TableView fx:id="OrderTable" editable="true" layoutY="59.0" prefHeight="554.0" prefWidth="988.0">
                           <columns>
                             <TableColumn prefWidth="101.0" text="订单编号" />
-                            <TableColumn prefWidth="98.0" text="姓名" />
-                              <TableColumn prefWidth="142.0" text="身份证" />
-                              <TableColumn prefWidth="79.0" text="航班编号" />
-                              <TableColumn prefWidth="67.0" text="航班公司" />
-                              <TableColumn prefWidth="61.0" text="机型" />
-                              <TableColumn prefWidth="119.0" text="起飞时间" />
-                              <TableColumn prefWidth="131.0" text="到达时间" />
-                              <TableColumn prefWidth="40.0" text="起点" />
-                              <TableColumn prefWidth="44.0" text="终点" />
-                              <TableColumn prefWidth="51.0" text="价格" />
+                            <TableColumn prefWidth="53.0" text="姓名" />
+                              <TableColumn prefWidth="176.0" text="身份证" />
+                              <TableColumn prefWidth="71.0" text="航班编号" />
+                              <TableColumn prefWidth="76.0" text="航班公司" />
+                              <TableColumn prefWidth="76.0" text="机型" />
+                              <TableColumn prefWidth="135.0" text="起飞时间" />
+                              <TableColumn prefWidth="145.0" text="到达时间" />
+                              <TableColumn prefWidth="46.0" text="起点" />
+                              <TableColumn minWidth="3.0" prefWidth="51.0" text="终点" />
+                              <TableColumn prefWidth="57.0" text="价格" />
                           </columns>
                         </TableView>
-                        <ComboBox fx:id="orderparams" layoutX="96.0" layoutY="29.0" prefWidth="150.0" />
-                        <Label layoutX="56.0" layoutY="34.0" text="属性" />
-                        <TextField fx:id="searchOrderTextfield" layoutX="246.0" layoutY="29.0" prefHeight="12.0" prefWidth="227.0" />
-                        <Button fx:id="button_searchorder" layoutX="473.0" layoutY="29.0" mnemonicParsing="false" text="搜索订单" />
+                        <JFXButton fx:id="button_searchorder" layoutX="710.0" layoutY="21.0" text="搜索订单" />
+                        <JFXTextField fx:id="searchOrderTextfield" layoutX="108.0" layoutY="14.0" prefHeight="30.0" prefWidth="602.0" />
+                        <JFXComboBox fx:id="orderparams" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="94.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
-        </tabs>
-      </TabPane>
-   </center>
-   <top>
-      <Button fx:id="button_logout" mnemonicParsing="false" text="返回" BorderPane.alignment="TOP_RIGHT" />
-   </top>
+         </tabs>
+      </JFXTabPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="751.0" prefWidth="63.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="button_logout" layoutX="-1.0" layoutY="-1.0" prefHeight="34.0" prefWidth="57.0" text="注销" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></JFXButton>
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>

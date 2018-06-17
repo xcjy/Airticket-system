@@ -2,6 +2,9 @@ package Window;
 
 import Utils.MysqlUtils;
 import Utils.UserUtils;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -10,29 +13,32 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class findpassW {
     Parent root2;
-    Button fid5;
-    TextField fid1;
-    TextField fid4;
-    PasswordField fid2 ;
-    PasswordField fid3 ;
+    JFXButton fid5;
+
+    JFXTextField fid1,fid4;
+    JFXPasswordField fid2,fid3;
+
     Text fid6;
     Stage finfpwStage2=new Stage();
 
     public findpassW()
     {
         try{
-            root2 = FXMLLoader.load(getClass().getResource("../fxml/fpw.fxml"));
+            root2 = FXMLLoader.load(getClass().getResource("../fxml/fpw1.fxml"));
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        Scene scene=new Scene(root2,350,500);
-        finfpwStage2.setTitle("注册");
+        Scene scene=new Scene(root2,300,360);
+        finfpwStage2.setTitle("找回密码");
         finfpwStage2.setScene(scene);
+        finfpwStage2.initStyle(StageStyle.UTILITY);
+
         finfpwStage2.show();
         Init_findpw();
 
@@ -40,11 +46,11 @@ public class findpassW {
 
     public void Init_findpw()
     {
-        fid1 = (TextField)root2.lookup("#fid1");
-        fid4 = (TextField)root2.lookup("#fid4");
-        fid2 = (PasswordField)root2.lookup("#fid2");
-        fid3 = (PasswordField)root2.lookup("#fid3");
-        fid5 = (Button) root2.lookup("#fid5");
+        fid1 = (JFXTextField) root2.lookup("#fid1");
+        fid4 = (JFXTextField) root2.lookup("#fid4");
+        fid2 = (JFXPasswordField) root2.lookup("#fid2");
+        fid3 = (JFXPasswordField) root2.lookup("#fid3");
+        fid5 = (JFXButton) root2.lookup("#fid5");
         fid6 = (Text) root2.lookup("#fid6");
 
         fid5.setOnAction(event ->

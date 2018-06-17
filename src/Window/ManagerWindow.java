@@ -6,6 +6,9 @@ import Entity.User;
 import Utils.FlightUtils;
 import Utils.OrderUtils;
 import Utils.UserUtils;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.stage.StageStyle;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -44,24 +48,27 @@ public class ManagerWindow {
     private ObservableList<Order> OrderObList;
 
 
+    private JFXButton button_searchflight;
 
-    private Button button_searchflight;
-    private Button button_logout;
-    private Button button_searchuser;
-    private Button button_searchorder;
+    private JFXButton button_logout;
 
+    private JFXButton button_searchuser;
 
-
-    private List<TextField> flighttextField;
+    private JFXButton button_searchorder;
 
 
-    private TextField searchFlightTextfield;
-    private TextField searchUserTextfield;
-    private TextField searchOrderTextfield;
 
-    private ComboBox<String> flightParams;
-    private ComboBox<String> userparams;
-    private ComboBox<String> orderparams;
+
+
+
+    private JFXTextField searchFlightTextfield;
+    private JFXTextField searchUserTextfield;
+    private JFXTextField searchOrderTextfield;
+
+
+    private JFXComboBox<String> flightParams;
+    private JFXComboBox<String> userparams;
+    private JFXComboBox<String> orderparams;
 
 
     private Map<String,String> flightMap;
@@ -88,6 +95,7 @@ public class ManagerWindow {
         Scene scene=new Scene(root,1024,768);
         FlightStage.setTitle("管理员");
         FlightStage.setScene(scene);
+        FlightStage.initStyle(StageStyle.UTILITY);
         FlightStage.show();
 
 
@@ -119,19 +127,17 @@ public class ManagerWindow {
         FlightTable=(TableView)root.lookup("#FlightTable");
         FlightObList=FXCollections.observableArrayList();
 
-        button_searchflight=(Button) root.lookup("#button_searchflight");
-        button_logout=(Button)root.lookup("#button_logout");
+        button_searchflight=(JFXButton) root.lookup("#button_searchflight");
+        button_logout=(JFXButton) root.lookup("#button_logout");
 
-        searchFlightTextfield=(TextField) root.lookup("#searchFlightTextfield");
-        flightParams =(ComboBox<String>)root.lookup("#flightparams");
+        searchFlightTextfield=(JFXTextField) root.lookup("#searchFlightTextfield");
+        flightParams =(JFXComboBox<String>)root.lookup("#flightparams");
 
 
         initFlightComboBox();
         flightParams.setItems(FXCollections.observableArrayList(flightMap.keySet()));
         flightParams.getSelectionModel().select(0);
-        flighttextField=new ArrayList<TextField>();
-        for(int i=0;i<9;i++)
-            flighttextField.add( (TextField)root.lookup("#flightTextfield_"+i));
+
 
         //设置右键
         ContextMenu cm_flighttable=new ContextMenu();
@@ -172,10 +178,10 @@ public class ManagerWindow {
         UserTable=(TableView)root.lookup("#UserTable");
         UserObList=FXCollections.observableArrayList();
 
-        button_searchuser=(Button) root.lookup("#button_searchuser");
+        button_searchuser=(JFXButton) root.lookup("#button_searchuser");
 
-        searchUserTextfield=(TextField) root.lookup("#searchUserTextfield");
-        userparams =(ComboBox<String>)root.lookup("#userparams");
+        searchUserTextfield=(JFXTextField) root.lookup("#searchUserTextfield");
+        userparams =(JFXComboBox<String>)root.lookup("#userparams");
 
         initUserComboBox();
 
@@ -228,10 +234,10 @@ public class ManagerWindow {
         OrderObList=FXCollections.observableArrayList();
 
 
-        button_searchorder=(Button) root.lookup("#button_searchorder");
+        button_searchorder=(JFXButton) root.lookup("#button_searchorder");
 
-        searchOrderTextfield=(TextField) root.lookup("#searchOrderTextfield");
-        orderparams =(ComboBox<String>)root.lookup("#orderparams");
+        searchOrderTextfield=(JFXTextField) root.lookup("#searchOrderTextfield");
+        orderparams =(JFXComboBox<String>)root.lookup("#orderparams");
 
         initOrderComboBox();
 
@@ -889,11 +895,13 @@ public class ManagerWindow {
           FlightStage.hide();
          LoginWindow LW= new LoginWindow();
          Stage s1=new Stage();
-         try{
-           LW.start(s1);}
-           catch (Exception e){
+         try {
+             LW.start(s1);
+         }
+         catch (Exception e){
              e.printStackTrace();
-           }
+         }
+
       });
 
 
