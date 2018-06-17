@@ -1,8 +1,8 @@
 package Window;
 
-import Entity.Flight;
-import Entity.Order;
-import Entity.User;
+import Model.Flight;
+import Model.Order;
+import Model.User;
 import Utils.FlightUtils;
 import Utils.OrderUtils;
 import Utils.UserUtils;

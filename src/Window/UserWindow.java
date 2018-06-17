@@ -1,8 +1,8 @@
 package Window;
 
-import Entity.Flight;
-import Entity.Order;
-import Entity.Passenger;
+import Model.Flight;
+import Model.Order;
+import Model.Passenger;
 import Utils.FlightUtils;
 import Utils.OrderUtils;
 import Utils.PassengerUtils;
@@ -14,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,10 +22,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Pair;
 import javafx.util.StringConverter;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
