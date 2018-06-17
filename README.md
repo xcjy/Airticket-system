@@ -4,7 +4,7 @@
 IDE: Intelli J  
 开发工具包：JDK 1.8.0_172  
 数据库：MYSQL 5.7   
-GUI: JAVAFX  Jfoenix  
+GUI: JAVAFX 
 #使用教程：  
 1.安装上述环境。    
 2.用intellij打开项目  
