@@ -1,11 +1,11 @@
 # 机票预定系统
 运行环境：
 操作系统：WIN10    
-IDE: Intelli J
+IDE: Intelli J  
 开发工具包：JDK 1.8.0_172  
 数据库：MYSQL 5.7   
 GUI: JAVAFX  Jfoenix  
-使用教程：  
+##使用教程：  
 1.安装上述环境。    
 2.用intellij打开项目  
 2.导入lib目录下的两个jar包  
